@@ -1,0 +1,1 @@
+#define RegVersion 0x42
