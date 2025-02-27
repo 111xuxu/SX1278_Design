@@ -2,6 +2,10 @@
 
 uint8_t RxDa;
 uint8_t RxFlag;
+uint16_t CO2[6];
+uint16_t CO2_temp[6];
+int CO2_index=1;
+int state=0;
 void MYUSART_Init()
 {	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
@@ -17,7 +21,7 @@ void MYUSART_Init()
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
 	
 	USART_InitTypeDef USART_InitStructure;
-	USART_InitStructure.USART_BaudRate =115200 ;
+	USART_InitStructure.USART_BaudRate =9600 ;
 	USART_InitStructure.USART_HardwareFlowControl =USART_HardwareFlowControl_None ;
 	USART_InitStructure.USART_Mode =USART_Mode_Tx|USART_Mode_Rx ;
 	USART_InitStructure.USART_Parity =USART_Parity_No;
@@ -106,18 +110,47 @@ uint8_t GetRxData(void)
 
 
 
+
+
 void USART1_IRQHandler(void)
 {
-if(USART_GetITStatus(USART1,USART_IT_RXNE)==SET)
-		{
-			RxDa = USART_ReceiveData(USART1);
-			RxFlag=1;
-			USART_ClearITPendingBit(USART1,USART_IT_RXNE);
+    if (USART_GetITStatus(USART1, USART_IT_RXNE) == SET)
+    {
 
-		}
+        uint8_t data = USART_ReceiveData(USART1);
+        USART_ClearITPendingBit(USART1, USART_IT_RXNE);
 
+        if (state == 0)
+        {
+            if (data == 0x2C)
+            {
+                CO2_temp[0] = data; 
+                CO2_index = 1;      
+                state = 1;          
+            }
+        }
+        else if (state == 1)
+        {
 
+            CO2_temp[CO2_index++] = data;
+            if (CO2_index >= 6)
+            {
+                uint8_t check = CO2_temp[0] + CO2_temp[1]+ CO2_temp[2] + CO2_temp[3]+ CO2_temp[4];
+                if (CO2_temp[5] == check)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        CO2[i] = CO2_temp[i];
+                    }
+                    RxFlag = 1; 
+                }
+                state = 0;
+                CO2_index = 0;
+            }
+        }
+    }
 }
+
 
 
 

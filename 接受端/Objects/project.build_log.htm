@@ -21,8 +21,8 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-C:\Users\爆米花323\Desktop\利兹\Individual project\Program\接受端\project.uvprojx
-Project File Date:  12/30/2024
+C:\Users\爆米花323\Desktop\利兹\Individual project\Program\SX1278_Design\接受端\project.uvprojx
+Project File Date:  02/23/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'E:\ARM\ARMCC\Bin'
@@ -42,28 +42,44 @@ compiling main.c...
   void Key_Init();
 .\Hardware\Key.h(16): warning:  #1-D: last line of file ends without a newline
   #endif
-user\main.c(11): warning:  #1295-D: Deprecated declaration Menu - give arg types
+.\Hardware\CO2.h(4): warning:  #1-D: last line of file ends without a newline
+  void CO2_Init();
+.\Hardware\CO2.h(4): warning:  #1295-D: Deprecated declaration CO2_Init - give arg types
+  void CO2_Init();
+.\Hardware\Light.h(2): warning:  #1295-D: Deprecated declaration Light_Init - give arg types
+  void Light_Init();
+.\Hardware\Light.h(3): warning:  #1295-D: Deprecated declaration Get_Light - give arg types
+  int Get_Light();
+.\Hardware\Light.h(5): warning:  #1-D: last line of file ends without a newline
+   
+.\Hardware\Soil_Humidity.h(2): warning:  #1295-D: Deprecated declaration Soil_Humidity_Init - give arg types
+  void Soil_Humidity_Init();
+.\Hardware\Soil_Humidity.h(3): warning:  #1-D: last line of file ends without a newline
+  uint16_t AD_GetValue(uint8_t ADC_Channel);
+user\main.c(14): warning:  #1295-D: Deprecated declaration Menu - give arg types
   void Menu();
-user\main.c(12): warning:  #1295-D: Deprecated declaration Parameter_Menu - give arg types
+user\main.c(15): warning:  #1295-D: Deprecated declaration Parameter_Menu - give arg types
   void Parameter_Menu();
-user\main.c(13): warning:  #1295-D: Deprecated declaration Setting_Menu - give arg types
+user\main.c(16): warning:  #1295-D: Deprecated declaration Setting_Menu - give arg types
   void Setting_Menu();
-user\main.c(394): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
+user\main.c(399): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
   if(SX1278_ReadReg(0x42)!=0x12)
-user\main.c(407): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
+user\main.c(412): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
   			OLED_ShowHexNum(i,1+j*3,SX1278_ReadReg(0x00),2);
-user\main.c(416): warning:  #111-D: statement is unreachable
+user\main.c(421): warning:  #111-D: statement is unreachable
   	OLED_Clear();
-user\main.c(423): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
+user\main.c(428): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
   	FIFO_Buffer[i]=SX1278_ReadReg(0x00);
-user\main.c(454): warning:  #223-D: function "DHT11_Read_Data" declared implicitly
+user\main.c(459): warning:  #223-D: function "DHT11_Read_Data" declared implicitly
   DHT11_Read_Data(&temp,&humi);
-user\main.c(466): warning:  #223-D: function "DHT11_Init" declared implicitly
+user\main.c(480): warning:  #223-D: function "DHT11_Init" declared implicitly
   	DHT11_Init();
-user\main.c: 16 warnings, 0 errors
+user\main.c(522): warning:  #111-D: statement is unreachable
+  	Welcome_menu();
+user\main.c: 24 warnings, 0 errors
 linking...
-Program Size: Code=5804 RO-data=2160 RW-data=232 ZI-data=1632  
-".\Objects\project.axf" - 0 Error(s), 16 Warning(s).
+Program Size: Code=4216 RO-data=2160 RW-data=244 ZI-data=1660  
+".\Objects\project.axf" - 0 Error(s), 24 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -77,7 +93,7 @@ Package Vendor: Keil
   E:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

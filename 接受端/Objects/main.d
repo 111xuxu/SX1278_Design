@@ -37,3 +37,6 @@
 .\objects\main.o: E:\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: .\Hardware\Key.h
 .\objects\main.o: E:\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: .\Hardware\CO2.h
+.\objects\main.o: .\Hardware\Light.h
+.\objects\main.o: .\Hardware\Soil_Humidity.h

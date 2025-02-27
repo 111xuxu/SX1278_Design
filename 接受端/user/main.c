@@ -8,10 +8,15 @@
 #include <string.h>
 #include "Key.h"
 #include "stdio.h"
+#include "CO2.h"    
+#include "Light.h"
+#include "Soil_Humidity.h"
 void Menu();
 void Parameter_Menu();
 void Setting_Menu();
 char FIFO_Buffer[256];
+extern uint16_t CO2[6];
+uint16_t CO2_Concentration=0;
 uint8_t temp;
 	uint8_t humi;
 uint8_t Cursor_position=1;
@@ -452,10 +457,19 @@ void Menu()
 uint8_t Get_Tem_Hum()
 {
 DHT11_Read_Data(&temp,&humi);
-Delay_ms(2000);
+Delay_ms(10);
 DHT11_Read_Data(&temp,&humi);
 return 1;
 }
+
+
+uint16_t Get_CO2()
+{
+CO2_Concentration=CO2[1]*256+CO2[2];
+	return CO2_Concentration;
+}
+
+
 
 int main(void)
 
@@ -466,9 +480,45 @@ int main(void)
 	DHT11_Init();
 	MYUSART_Init();
 	SX1278_Init();
+	Light_Init();
+	Soil_Humidity_Init();
 	SX1278_Basic_Setting(128);
+
+	
+	while(1)
+	{
+	OLED_ShowNum(2,5,AD_GetValue(ADC_Channel_0),4);
+	OLED_ShowNum(1,1,Get_Light(),2);
+
+	
+Get_Tem_Hum();
+	OLED_ShowNum(3,1,temp,2);
+		OLED_ShowNum(4,1,humi,2);
+	OLED_ShowNum(4,5,Get_CO2(),4);
+	}
 	
 	
+	/*while(1)
+	{
+	Get_CO2();
+Get_Tem_Hum();
+	OLED_ShowNum(1,1,temp,2);
+		OLED_ShowNum(2,1,humi,2);
+		OLED_ShowHexNum(3,1,CO2[0],2);
+		OLED_ShowHexNum(3,4,CO2[1],2);
+		OLED_ShowHexNum(3,7,CO2[2],2);
+		OLED_ShowNum(4,1,CO2_Concentration,4);
+	}
+	*/
+
+	
+	/*while(1)
+	{
+		 Get_Tem_Hum();
+	OLED_ShowNum(1,1,temp,2);
+		OLED_ShowNum(2,1,humi,2);
+	
+	}*/
 	Welcome_menu();
 	while(Key_GetNum()==0);
 	OLED_Clear();

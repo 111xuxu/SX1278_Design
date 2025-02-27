@@ -700,11 +700,6 @@
               <FileType>1</FileType>
               <FilePath>.\Hardware\SX1278.c</FilePath>
             </File>
-            <File>
-              <FileName>SX1278_Reg_Define_Table.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\SX1278_Reg_Define_Table.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

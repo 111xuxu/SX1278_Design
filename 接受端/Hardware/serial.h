@@ -4,8 +4,6 @@
 
 
 void MYUSART_Init();
-
-
 void USART_SendByte(uint8_t Byte);
 void USART_SendArray(uint8_t *Array,uint16_t Length);
 void USART_SendString(char *string);

@@ -725,6 +725,36 @@
               <FileType>5</FileType>
               <FilePath>.\DH11.h</FilePath>
             </File>
+            <File>
+              <FileName>Light.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Light.c</FilePath>
+            </File>
+            <File>
+              <FileName>Light.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Light.h</FilePath>
+            </File>
+            <File>
+              <FileName>Soil_Humidity.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Soil_Humidity.c</FilePath>
+            </File>
+            <File>
+              <FileName>Soil_Humidity.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Soil_Humidity.h</FilePath>
+            </File>
+            <File>
+              <FileName>DS18B20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DS18B20.c</FilePath>
+            </File>
+            <File>
+              <FileName>DS18B20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DS18B20.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
