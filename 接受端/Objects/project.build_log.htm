@@ -56,29 +56,29 @@ compiling main.c...
   void Soil_Humidity_Init();
 .\Hardware\Soil_Humidity.h(3): warning:  #1-D: last line of file ends without a newline
   uint16_t AD_GetValue(uint8_t ADC_Channel);
-user\main.c(14): warning:  #1295-D: Deprecated declaration Menu - give arg types
+user\main.c(15): warning:  #1295-D: Deprecated declaration Menu - give arg types
   void Menu();
-user\main.c(15): warning:  #1295-D: Deprecated declaration Parameter_Menu - give arg types
+user\main.c(16): warning:  #1295-D: Deprecated declaration Parameter_Menu - give arg types
   void Parameter_Menu();
-user\main.c(16): warning:  #1295-D: Deprecated declaration Setting_Menu - give arg types
+user\main.c(17): warning:  #1295-D: Deprecated declaration Setting_Menu - give arg types
   void Setting_Menu();
-user\main.c(399): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
+user\main.c(400): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
   if(SX1278_ReadReg(0x42)!=0x12)
-user\main.c(412): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
+user\main.c(413): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
   			OLED_ShowHexNum(i,1+j*3,SX1278_ReadReg(0x00),2);
-user\main.c(421): warning:  #111-D: statement is unreachable
+user\main.c(425): warning:  #111-D: statement is unreachable
   	OLED_Clear();
-user\main.c(428): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
+user\main.c(432): warning:  #223-D: function "SX1278_ReadReg" declared implicitly
   	FIFO_Buffer[i]=SX1278_ReadReg(0x00);
-user\main.c(459): warning:  #223-D: function "DHT11_Read_Data" declared implicitly
+user\main.c(463): warning:  #223-D: function "DHT11_Read_Data" declared implicitly
   DHT11_Read_Data(&temp,&humi);
-user\main.c(480): warning:  #223-D: function "DHT11_Init" declared implicitly
+user\main.c(484): warning:  #223-D: function "DHT11_Init" declared implicitly
   	DHT11_Init();
-user\main.c(522): warning:  #111-D: statement is unreachable
-  	Welcome_menu();
+user\main.c(491): warning:  #111-D: statement is unreachable
+  	Soil_Humidity_Init();
 user\main.c: 24 warnings, 0 errors
 linking...
-Program Size: Code=4216 RO-data=2160 RW-data=244 ZI-data=1660  
+Program Size: Code=3008 RO-data=268 RW-data=32 ZI-data=1656  
 ".\Objects\project.axf" - 0 Error(s), 24 Warning(s).
 
 <h2>Software Packages used:</h2>

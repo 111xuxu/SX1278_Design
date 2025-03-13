@@ -40,3 +40,4 @@
 .\objects\main.o: .\Hardware\CO2.h
 .\objects\main.o: .\Hardware\Light.h
 .\objects\main.o: .\Hardware\Soil_Humidity.h
+.\objects\main.o: .\Hardware\Led.h

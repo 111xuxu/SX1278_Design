@@ -31,7 +31,7 @@ char Buffer[128]={
 int main(void)
 
 {
-	int j=0;
+	unsigned int j=0;
 	OLED_Init();
 	MYUSART_Init();
 	SX1278_Init();
@@ -50,7 +50,7 @@ int main(void)
 		OLED_ShowString(4,1,"                ");
 	OLED_ShowString(4,1,"Sending Data");
 			
-	OLED_ShowNum(3,14,j,2);
+	OLED_ShowNum(3,13,j,3);
 		j++;	
 	SX1278_WriteReg(FIFO_Pointer,Send_Buffer_Start);
 	OLED_ShowHexNum(3,1,SX1278_ReadReg(0x00),2);

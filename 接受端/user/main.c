@@ -11,6 +11,7 @@
 #include "CO2.h"    
 #include "Light.h"
 #include "Soil_Humidity.h"
+#include "Led.h"
 void Menu();
 void Parameter_Menu();
 void Setting_Menu();
@@ -395,7 +396,7 @@ Menu();
 
 void Test()
 {
-
+long recieved_times=0;
 if(SX1278_ReadReg(0x42)!=0x12)
 		OLED_ShowString(1,1,"Error");
 		Get_Basic_Setting();
@@ -413,6 +414,9 @@ while(1)
 		
 			}
 	}
+	
+OLED_ShowNum(1,1,recieved_times,3);
+	recieved_times++;
 
 		//if(Key_GetNum()!=0)
 	//break;
@@ -481,12 +485,16 @@ int main(void)
 	MYUSART_Init();
 	SX1278_Init();
 	Light_Init();
+	LED_Init();
+	Led1_on();
+	while(1);
 	Soil_Humidity_Init();
 	SX1278_Basic_Setting(128);
 
 	
-	while(1)
+	/*while(1)
 	{
+		OLED_ShowNum(1,5,1111,4);
 	OLED_ShowNum(2,5,AD_GetValue(ADC_Channel_0),4);
 	OLED_ShowNum(1,1,Get_Light(),2);
 
@@ -496,7 +504,7 @@ Get_Tem_Hum();
 		OLED_ShowNum(4,1,humi,2);
 	OLED_ShowNum(4,5,Get_CO2(),4);
 	}
-	
+	*/
 	
 	/*while(1)
 	{
