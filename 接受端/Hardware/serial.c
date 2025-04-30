@@ -1,11 +1,12 @@
 #include "stm32f10x.h"                  // Device header
 
-uint8_t RxDa;
+uint8_t RxData;
 uint8_t RxFlag;
 uint16_t CO2[6];
 uint16_t CO2_temp[6];
 int CO2_index=1;
 int state=0;
+char temp[500];
 void MYUSART_Init()
 {	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
@@ -105,7 +106,7 @@ if (RxFlag==1)
 }
 
 uint8_t GetRxData(void)
-{return RxDa;}
+{return RxData;}
 
 
 

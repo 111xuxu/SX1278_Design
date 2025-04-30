@@ -700,6 +700,16 @@
               <FileType>1</FileType>
               <FilePath>.\Hardware\SX1278.c</FilePath>
             </File>
+            <File>
+              <FileName>DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DMA.c</FilePath>
+            </File>
+            <File>
+              <FileName>DMA.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DMA.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

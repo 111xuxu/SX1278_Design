@@ -13,14 +13,7 @@ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
 		GPIO_Init(GPIOA, &GPIO_InitStructure);
-		
-		
-		
-		
-		
-		
 		ADC_InitTypeDef ADC_InitStructure;
-		
 		ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
 		ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
 		ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
@@ -30,8 +23,6 @@ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 		ADC_Init(ADC1,&ADC_InitStructure);
 	
 		ADC_Cmd(ADC1,ENABLE);
-
-
 		ADC_ResetCalibration(ADC1);
 		while(ADC_GetResetCalibrationStatus(ADC1)==SET);
 		ADC_StartCalibration(ADC1);

@@ -755,6 +755,26 @@
               <FileType>5</FileType>
               <FilePath>.\DS18B20.h</FilePath>
             </File>
+            <File>
+              <FileName>WIFI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\WIFI.c</FilePath>
+            </File>
+            <File>
+              <FileName>WIFI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\WIFI.h</FilePath>
+            </File>
+            <File>
+              <FileName>My_DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\My_DMA.c</FilePath>
+            </File>
+            <File>
+              <FileName>My_DMA.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\My_DMA.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

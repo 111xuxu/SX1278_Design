@@ -30,6 +30,7 @@
 ".\objects\my_spi.o"
 ".\objects\serial.o"
 ".\objects\sx1278.o"
+".\objects\dma.o"
 ".\objects\delay.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"

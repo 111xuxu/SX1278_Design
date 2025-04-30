@@ -28,3 +28,4 @@
 .\objects\serial.o: .\library\stm32f10x_usart.h
 .\objects\serial.o: .\library\stm32f10x_wwdg.h
 .\objects\serial.o: .\library\misc.h
+.\objects\serial.o: .\system\delay.h

@@ -35,6 +35,8 @@
 ".\objects\light.o"
 ".\objects\soil_humidity.o"
 ".\objects\ds18b20.o"
+".\objects\wifi.o"
+".\objects\my_dma.o"
 ".\objects\delay.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"

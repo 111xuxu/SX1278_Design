@@ -1,7 +1,14 @@
 #include "stm32f10x.h"                  // Device header
-
+#include "delay.h"
 uint8_t RxDa;
-uint8_t RxFlag;
+
+uint8_t RxFlag;//接收标志位
+uint8_t TxPacket[4];//输出数据缓存区
+uint8_t RxPacket[4];//输入数据缓存区
+extern char Recieve_String[500];
+char temp[500];
+uint8_t Recieved_String_Size;
+
 void MYUSART_Init()
 {	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
@@ -17,7 +24,7 @@ void MYUSART_Init()
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
 	
 	USART_InitTypeDef USART_InitStructure;
-	USART_InitStructure.USART_BaudRate =115200 ;
+	USART_InitStructure.USART_BaudRate =9600 ;
 	USART_InitStructure.USART_HardwareFlowControl =USART_HardwareFlowControl_None ;
 	USART_InitStructure.USART_Mode =USART_Mode_Tx|USART_Mode_Rx ;
 	USART_InitStructure.USART_Parity =USART_Parity_No;
@@ -25,8 +32,10 @@ void MYUSART_Init()
 	USART_InitStructure.USART_WordLength =USART_WordLength_8b ;
 	
 	USART_Init(USART1,&USART_InitStructure);
-
-	USART_ITConfig(USART1,USART_IT_RXNE,ENABLE);
+	
+	
+	USART_ITConfig(USART1, USART_IT_IDLE, ENABLE);
+	//USART_ITConfig(USART1,USART_IT_RXNE,ENABLE);
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	NVIC_InitTypeDef NVIC_InitStructure;
 	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
@@ -104,21 +113,53 @@ uint8_t GetRxData(void)
 {return RxDa;}
 
 
-
-
-void USART1_IRQHandler(void)
+void String_Copy(char *dest,char *src,int length)
 {
-if(USART_GetITStatus(USART1,USART_IT_RXNE)==SET)
-		{
-			RxDa = USART_ReceiveData(USART1);
-			RxFlag=1;
-			USART_ClearITPendingBit(USART1,USART_IT_RXNE);
+	uint16_t i=0;
+while (*src != '\0'&&i<length)
+    {
+        if ((*src != 0x0D) && (*src != 0x0A)) 
+        {
+            *dest++ = *src;
+					
+        }
+        
+        src++;
+				i++;
+    }
+    *dest = '\0';
 
-		}
+
 
 
 }
 
+void USART1_IRQHandler(void)
+{
+	
 
+		if (USART_GetITStatus(USART1, USART_IT_IDLE) != RESET)
+    {
+        (void)USART1->SR;
+        (void)USART1->DR;
+        USART_ClearITPendingBit(USART1, USART_IT_IDLE);
+			
+				Recieved_String_Size= 500-DMA_GetCurrDataCounter(DMA1_Channel5);
+				DMA_Cmd(DMA1_Channel5, DISABLE);
+        temp[Recieved_String_Size]='\0';
+			
+			
+				DMA_SetCurrDataCounter(DMA1_Channel5, 500);
+			
+			
+String_Copy(Recieve_String,temp,Recieved_String_Size);
+				DMA_Cmd(DMA1_Channel5, ENABLE);
+			
+     
+    }
+		
+	
+		
+}
 
 
