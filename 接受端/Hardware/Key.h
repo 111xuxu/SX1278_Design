@@ -3,7 +3,8 @@
 
 
 uint8_t Key_GetNum(void);
-void Key_Init();
+void Key_Init(void);
+
 
 
 
@@ -14,3 +15,4 @@ void Key_Init();
 
 
 #endif
+

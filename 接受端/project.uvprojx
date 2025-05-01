@@ -775,6 +775,16 @@
               <FileType>5</FileType>
               <FilePath>.\My_DMA.h</FilePath>
             </File>
+            <File>
+              <FileName>Menu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Menu.c</FilePath>
+            </File>
+            <File>
+              <FileName>Menu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Menu.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

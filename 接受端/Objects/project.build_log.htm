@@ -28,19 +28,19 @@ Project File Date:  04/30/2025
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'E:\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling WIFI.c...
-Hardware\serial.h(6): warning:  #1295-D: Deprecated declaration MYUSART_Init - give arg types
-  void MYUSART_Init();
-Hardware\WIFI.h(28): warning:  #1295-D: Deprecated declaration Connect_Server - give arg types
+Hardware\WIFI.h(40): warning:  #1295-D: Deprecated declaration Connect_Server - give arg types
   int Connect_Server();
-Hardware\WIFI.h(29): warning:  #1295-D: Deprecated declaration Wifi_USART_Init - give arg types
+Hardware\WIFI.h(41): warning:  #1295-D: Deprecated declaration Wifi_USART_Init - give arg types
   void  Wifi_USART_Init();
-Hardware\WIFI.h(41): warning:  #1-D: last line of file ends without a newline
+Hardware\WIFI.h(51): warning:  #1295-D: Deprecated declaration Join_AP - give arg types
+  void Join_AP();
+Hardware\WIFI.h(52): warning:  #1-D: last line of file ends without a newline
   #endif
-Hardware\WIFI.c(224): warning:  #940-D: missing return statement at end of non-void function "Send_Data_To_String" 
-  }
+Hardware\WIFI.c(236): warning:  #940-D: missing return statement at end of non-void function "Connect_Server" 
+  	}
 Hardware\WIFI.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=7292 RO-data=2160 RW-data=704 ZI-data=2656  
+Program Size: Code=12926 RO-data=2586 RW-data=496 ZI-data=2656  
 ".\Objects\project.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>

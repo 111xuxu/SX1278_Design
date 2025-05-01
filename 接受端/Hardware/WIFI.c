@@ -4,8 +4,10 @@
 #include "OLED.h"
 #include "delay.h"
 #include <string.h>
+#include <stdio.h>
 uint8_t Recieved_String_Size;
 char WIFI_temp[500];
+
 void  Wifi_USART_Init()
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
@@ -177,33 +179,55 @@ OLED_ShowChar(4, i+1, Recieve_String[i+45]);
 
 }
 
+void Join_AP(){
 
+
+WIFI_SendString(Join_Ap);
+Delay_s(3);
+	Connect_Server();
+}
 
 
 int Connect_Server()
 	
-{Recieve_String[0] = '\0';
-		int tried_times=0;
-	do
-	{
+{
+	Recieve_String[0] = '\0';
 		
 		OLED_ShowString(1,1,"Connecting...");
 		WIFI_SendString(Check_AT);
-	Delay_ms(100);
-	
+	Delay_ms(200);
+
+		WIFI_SendString(Change_CIPMODE);
+	Delay_ms(200);
 	WIFI_SendString(Connect_To_Server);
-	Delay_ms(100);
+	Delay_ms(200);
+	
 	
 	WIFI_SendString(Connection_Status);
-	Delay_ms(100);
-		Delay_ms(tried_times*100);
-		tried_times++;
-		
-		if(tried_times>5)
-			return 0;
+	Delay_ms(200);
+	
+	
+	char *p=strstr(Recieve_String,"STATUS:");
+	if(!p)
+		Connect_Server();
+	
+	p+=7;
+	
+	int Status=(int)*p-'0';
+	
+	switch (Status){
+		case 3:
+					return 3;
+					
+		case 5:
+			Join_AP();
+		break;
+			
+	
 	}
-	while(strstr(Recieve_String,"STATUS:3")==NULL);
-	return 1;
+	
+	
+
 	
 	
 	
@@ -212,15 +236,83 @@ int Connect_Server()
 	}
 	
 
-
-
-int Send_Data_To_String()
+void Send_Http(Data* data)
+	
+{
+	Delay_s(1);
+	WIFI_SendString("+++");
+	Delay_s(1);
+	int statu=Connect_Server();
+	if(statu==3)
 	{
+		
+	char json[256];                        // ×ã¹»´ó¾ÍÐÐ
+	
 
-	WIFI_SendString(Data_Container);
-Delay_ms(200);
+ int json_len = snprintf(
+        json, sizeof json,
+        "{\"CO2_concentration\": %f,"
+        "\"ID\": %d,"
+        "\"Light_time\": %f,"
+        "\"Soil_humidity\":%f,"
+        "\"Soil_temperature\": %f,"
+        "\"Air_humidity\":%f,"
+        "\"Air_temperature\":%f}",
+        data->CO2_concentration,
+				data->ID,
+				data->Light_time,
+				data->Soil_humidity,
+				data->Soil_temperature,
+				data->Air_humidity,
+				data->Air_temperature
+				);
 
-
+char http[512];
+    int http_len = snprintf(
+        http, sizeof http,
+        "POST /postdata HTTP/1.1\r\n"
+        "Host: %s\r\n"
+        "Content-Type: application/json\r\n"
+        "Content-Length: %d\r\n"
+        "Connection: close\r\n"
+        "\r\n"
+        "%s",
+        "8.208.52.104", json_len, json);
+				WIFI_SendString(CIP_Send);
+				Delay_ms(500);
+				WIFI_SendString(http);
+				Delay_ms(1000);
+				WIFI_SendString("+++");
+				//char *p=strstr(Recieve_String,"success");
+				
+				
+				
+				
+			}
+	
+		
+	
+				
+	
 }
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
 
 
