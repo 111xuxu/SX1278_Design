@@ -7,7 +7,7 @@
 #include <stdio.h>
 uint8_t Recieved_String_Size;
 char WIFI_temp[500];
-
+static int tried_times=0;
 void  Wifi_USART_Init()
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
@@ -179,10 +179,15 @@ OLED_ShowChar(4, i+1, Recieve_String[i+45]);
 
 }
 
-void Join_AP(){
+int Join_AP(){
 
 
 WIFI_SendString(Join_Ap);
+	
+	if(tried_times++>=5){
+		OLED_ShowString(1,1,"No AP Connection");
+		return 0;
+	}
 Delay_s(3);
 	Connect_Server();
 }
@@ -217,18 +222,45 @@ int Connect_Server()
 	
 	switch (Status){
 		case 3:
-					return 3;
+			tried_times=0;
+					return 1;
 					
 		case 5:
-			Join_AP();
-		break;
-			
-	
+			if(Join_AP()==0)
+		return 0;
+		
 	}
 	
-	
+	}
 
 	
+	int check_AP_Connection()
+	{
+	
+	Recieve_String[0] = '\0';
+		WIFI_SendString(Check_AT);
+	Delay_ms(200);
+	WIFI_SendString(Connection_Status);
+	Delay_ms(200);
+	
+	
+	char *p=strstr(Recieve_String,"STATUS:");
+	if(!p)
+		Connect_Server();
+	
+	p+=7;
+	
+	int Status=(int)*p-'0';
+	
+	switch (Status){
+		case 1:
+					return 0;
+		case 5:
+		return 0;
+		default:
+			return 1;
+		
+	}
 	
 	
 	
@@ -243,12 +275,10 @@ void Send_Http(Data* data)
 	WIFI_SendString("+++");
 	Delay_s(1);
 	int statu=Connect_Server();
-	if(statu==3)
+	if(statu==1)
 	{
 		
-	char json[256];                        // ×ã¹»´ó¾ÍÐÐ
-	
-
+	char json[256];                  
  int json_len = snprintf(
         json, sizeof json,
         "{\"CO2_concentration\": %f,"

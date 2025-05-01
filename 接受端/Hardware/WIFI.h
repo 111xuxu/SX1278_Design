@@ -48,5 +48,6 @@ void WIFI_SendNumber(uint32_t Number,uint8_t Length);
 uint8_t WIFI_GetRxData(void);
 uint8_t WIFI_GetRxFlag(void);
 void USART2_IRQHandler(void);
-void Join_AP();
+int Join_AP();
+	int check_AP_Connection();
 #endif

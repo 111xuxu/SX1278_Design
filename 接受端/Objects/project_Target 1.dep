@@ -1065,7 +1065,7 @@ I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
 I (DS18B20.h)(0x67BB76F2)
 F (.\DS18B20.h)(0x67BB76F2)()
-F (.\Hardware\WIFI.c)(0x6812D1EF)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\wifi.o --omf_browse .\objects\wifi.crf --depend .\objects\wifi.d)
+F (.\Hardware\WIFI.c)(0x681371F2)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\wifi.o --omf_browse .\objects\wifi.crf --depend .\objects\wifi.d)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
 I (E:\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -1095,12 +1095,12 @@ I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
 I (Hardware\serial.h)(0x68128642)
-I (Hardware\WIFI.h)(0x6812CD37)
+I (Hardware\WIFI.h)(0x68137181)
 I (Hardware\OLED.h)(0x63087D20)
 I (.\system\delay.h)(0x6772E980)
 I (E:\ARM\ARMCC\include\string.h)(0x588B8344)
 I (E:\ARM\ARMCC\include\stdio.h)(0x588B8344)
-F (.\Hardware\WIFI.h)(0x6812CD37)()
+F (.\Hardware\WIFI.h)(0x68137181)()
 F (.\My_DMA.c)(0x68124A45)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\my_dma.o --omf_browse .\objects\my_dma.crf --depend .\objects\my_dma.d)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
@@ -1131,7 +1131,7 @@ I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
 F (.\My_DMA.h)(0x68122A39)()
-F (.\Hardware\Menu.c)(0x68129799)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\menu.o --omf_browse .\objects\menu.crf --depend .\objects\menu.d)
+F (.\Hardware\Menu.c)(0x68137233)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\menu.o --omf_browse .\objects\menu.crf --depend .\objects\menu.d)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
 I (E:\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -1194,7 +1194,7 @@ I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
 I (system\Delay.h)(0x6772E980)
 F (.\system\Delay.h)(0x6772E980)()
-F (.\user\main.c)(0x6812D0AD)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x68136ABB)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
 I (E:\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -1235,7 +1235,7 @@ I (E:\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (.\Hardware\CO2.h)(0x6812868F)
 I (.\Hardware\Light.h)(0x68128663)
 I (.\Hardware\Soil_Humidity.h)(0x68128663)
-I (.\Hardware\WIFI.h)(0x6812CD37)
+I (.\Hardware\WIFI.h)(0x68137181)
 I (E:\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 F (.\user\stm32f10x_it.c)(0x4D99A59E)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f10x_it.o --omf_browse .\objects\stm32f10x_it.crf --depend .\objects\stm32f10x_it.d)
 I (user\stm32f10x_it.h)(0x4D99A59E)

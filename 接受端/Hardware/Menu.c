@@ -13,14 +13,14 @@ void Show_Wifi_Status()
 {
 	OLED_SetCursor(0, 120); 
 	if(Server_Status){
-    for (uint8_t i = 0; i < 8; i++) { // 连续 8 列
-        OLED_WriteData(0xFF);         // 0xFF = 8 个像素全亮
+    for (uint8_t i = 0; i < 8; i++) { 
+        OLED_WriteData(0xFF);        
     }
 	}
 	else{
 	
-	for (uint8_t i = 0; i < 8; i++) { // 连续 8 列
-        OLED_WriteData(0x00);         // 0xFF = 8 个像素全亮
+	for (uint8_t i = 0; i < 8; i++) { 
+        OLED_WriteData(0x00);         
     }
 	}
 
@@ -36,7 +36,7 @@ uint8_t j=0;
 	while(1)
 	{
 		Show_Wifi_Status();
-		OLED_ShowNum(4,14,Cursor_choice,2);
+		//OLED_ShowNum(4,14,Cursor_choice,2);
 		for(int i=0;i<4&& (i + j) < rows;i++)
 	{
 	OLED_ShowString(i+1,2,Menu[i+j]);
@@ -78,7 +78,7 @@ uint8_t j=0;
 	{
 	
 	OLED_Clear();
-		OLED_ShowNum(1,1,Cursor_choice,3);
+		//OLED_ShowNum(1,1,Cursor_choice,3);
 		return Cursor_choice;
 
 	}
@@ -204,7 +204,7 @@ void Menu()
 			Sending_test();
 		case 8:
 			
-			if(Connect_Server())
+			if(check_AP_Connection())
 				Server_Status=1;
 			else 
 				Server_Status=0;

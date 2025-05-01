@@ -86,7 +86,6 @@ int main(void)
 	data->Air_temperature=38;
 	Send_Http(data);
   free(data);
-	
 	/*while(1)
 	{
 		OLED_ShowNum(1,5,1111,4);
