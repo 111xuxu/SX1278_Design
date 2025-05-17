@@ -118,25 +118,95 @@ uint8_t j=0;
 
 	}
 
-		void CR_Menu()
+void CR_Menu()
 
 {
-	
-	SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xF1)|(Show_Menu(CR,sizeof(CR) / sizeof(CR[0]))<<1)));
-
+switch (Show_Menu(CR,sizeof(CR) / sizeof(CR[0])))
+		{case 1:
+			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xF1)|(0x01<<1)));
+			break;
+			case 2:
+			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xF1)|(0x02<<1)));
+			break;
+			case 3:
+			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xF1)|(0x03<<1)));
+			break;
+			case 4:
+			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xF1)|(0x04<<1)));
+			break;
+}
 		Parameter_Menu();
-		//Get_Basic_Setting();
 	}
 
+	
 	
 void	Power_Menu()
 	
 {
+	const static char Power_Parameter[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F};
 	
-SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|(Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0]))-1)));
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|Power_Parameter[Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0]))-1]));
+	
+	
+/*switch (Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0])))
+
+{
+			case 1:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x00));
+			break;
+			case 2:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x01));
+			break;
+			case 3:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x02));
+			break;
+			case 4:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x03));
+			break;
+			case 5:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x04));
+			break;
+			case 6:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x05));
+			break;
+			case 7:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x06));
+			break;
+			case 8:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x07));
+			break;
+			case 9:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x08));
+			break;
+			case 10:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x09));
+			break;
+			case 11:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0A));
+			break;
+			case 12:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0B));
+			break;
+			case 13:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0C));
+			break;
+			case 14:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0D));
+			break;
+			case 15:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0E));
+			break;
+			case 16:
+	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0F));
+			break;
+
+
+}*/
 	Parameter_Menu();
 }
-	
+
+
+
 void	INFORMATION_Menu()
 {
 OLED_ShowString(1,1,"Version:1.0");
