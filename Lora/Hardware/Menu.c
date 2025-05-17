@@ -104,17 +104,18 @@ uint8_t j=0;
 			
 	}	
 	Parameter_Menu();
-	//Get_Basic_Setting();
 	}
 	
 	void BW_Menu()
 
 {
-	SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0x0F)|((Show_Menu(BW,sizeof(BW) / sizeof(BW[0]))-1)<<4)));
+	const static char BW_Parameter[]={0x00,0x10,0x20,0x30,0x40,0x50,0x60,0x70,0x80,0x90};
+	
+	SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0x0F)|BW_Parameter[Show_Menu(BW,sizeof(BW) / sizeof(BW[0]))-1]));
 
 		Parameter_Menu();
 
-//Get_Basic_Setting();
+
 	}
 
 		void CR_Menu()
