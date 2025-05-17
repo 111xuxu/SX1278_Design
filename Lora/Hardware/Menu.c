@@ -147,61 +147,6 @@ void	Power_Menu()
 	
 	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|Power_Parameter[Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0]))-1]));
 	
-	
-/*switch (Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0])))
-
-{
-			case 1:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x00));
-			break;
-			case 2:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x01));
-			break;
-			case 3:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x02));
-			break;
-			case 4:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x03));
-			break;
-			case 5:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x04));
-			break;
-			case 6:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x05));
-			break;
-			case 7:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x06));
-			break;
-			case 8:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x07));
-			break;
-			case 9:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x08));
-			break;
-			case 10:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x09));
-			break;
-			case 11:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0A));
-			break;
-			case 12:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0B));
-			break;
-			case 13:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0C));
-			break;
-			case 14:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0D));
-			break;
-			case 15:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0E));
-			break;
-			case 16:
-	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|0x0F));
-			break;
-
-
-}*/
 	Parameter_Menu();
 }
 

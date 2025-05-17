@@ -27,7 +27,81 @@ Project File Date:  05/17/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'E:\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\project.axf" - 0 Error(s), 0 Warning(s).
+compiling Menu.c...
+Hardware\Menu.h(89): warning:  #223-D: function "OLED_ShowString" declared implicitly
+  	OLED_ShowString(1,1," ");
+Hardware\Menu.h(100): warning:  #223-D: function "OLED_ShowString" declared implicitly
+  	OLED_ShowString(1,1,"  Welcome to    ");
+Hardware\Menu.h(107): warning:  #1295-D: Deprecated declaration Show_Wifi_Status - give arg types
+  void Show_Wifi_Status();
+Hardware\Menu.h(111): warning:  #1295-D: Deprecated declaration HEADER_Menu - give arg types
+  	void HEADER_Menu();
+Hardware\Menu.h(113): warning:  #1295-D: Deprecated declaration BW_Menu - give arg types
+  	void BW_Menu();
+Hardware\Menu.h(116): warning:  #1295-D: Deprecated declaration CR_Menu - give arg types
+  		void CR_Menu();
+Hardware\Menu.h(118): warning:  #1295-D: Deprecated declaration Power_Menu - give arg types
+  void	Power_Menu();
+Hardware\Menu.h(120): warning:  #1295-D: Deprecated declaration INFORMATION_Menu - give arg types
+  void	INFORMATION_Menu();
+Hardware\Menu.h(123): warning:  #1295-D: Deprecated declaration Parameter_Menu - give arg types
+  void Parameter_Menu();
+Hardware\Menu.h(125): warning:  #1295-D: Deprecated declaration Setting_Menu - give arg types
+  void Setting_Menu();
+Hardware\Menu.h(128): warning:  #1295-D: Deprecated declaration Menu - give arg types
+  void Menu();
+Hardware\Menu.c(7): warning:  #1295-D: Deprecated declaration Setting_Menu - give arg types
+  void Setting_Menu();
+Hardware\Menu.c(8): warning:  #1295-D: Deprecated declaration Menu - give arg types
+  void Menu()	;
+Hardware\Menu.c(10): warning:  #1295-D: Deprecated declaration Parameter_Menu - give arg types
+  void Parameter_Menu();
+Hardware\Menu.c(14): warning:  #223-D: function "OLED_SetCursor" declared implicitly
+  	OLED_SetCursor(0, 120); 
+Hardware\Menu.c(17): warning:  #223-D: function "OLED_WriteData" declared implicitly
+          OLED_WriteData(0xFF);        
+Hardware\Menu.c(23): warning:  #223-D: function "OLED_WriteData" declared implicitly
+          OLED_WriteData(0x00);         
+Hardware\Menu.c(33): warning:  #223-D: function "OLED_Clear" declared implicitly
+  	OLED_Clear();
+Hardware\Menu.c(42): warning:  #223-D: function "OLED_ShowString" declared implicitly
+  	OLED_ShowString(i+1,2,Menu[i+j]);
+Hardware\Menu.c(46): warning:  #223-D: function "Key_GetNum" declared implicitly
+  	if(Key_GetNum()==2)
+Hardware\Menu.c(98): warning:  #223-D: function "SX1278_WriteReg" declared implicitly
+  			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xFE)|0x00));
+Hardware\Menu.c(98): warning:  #223-D: function "SX1278_SwapByte" declared implicitly
+  			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xFE)|0x00));
+Hardware\Menu.c(114): warning:  #223-D: function "SX1278_WriteReg" declared implicitly
+  	SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0x0F)|BW_Parameter[Show_Menu(BW,sizeof(BW) / sizeof(BW[0]))-1]));
+Hardware\Menu.c(114): warning:  #223-D: function "SX1278_SwapByte" declared implicitly
+  	SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0x0F)|BW_Parameter[Show_Menu(BW,sizeof(BW) / sizeof(BW[0]))-1]));
+Hardware\Menu.c(126): warning:  #223-D: function "SX1278_WriteReg" declared implicitly
+  			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xF1)|(0x01<<1)));
+Hardware\Menu.c(126): warning:  #223-D: function "SX1278_SwapByte" declared implicitly
+  			SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0xF1)|(0x01<<1)));
+Hardware\Menu.c(148): warning:  #223-D: function "SX1278_WriteReg" declared implicitly
+  	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|Power_Parameter[Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0]))-1]));
+Hardware\Menu.c(148): warning:  #223-D: function "SX1278_SwapByte" declared implicitly
+  	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|Power_Parameter[Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0]))-1]));
+Hardware\Menu.c(157): warning:  #223-D: function "OLED_ShowString" declared implicitly
+  OLED_ShowString(1,1,"Version:1.0");
+Hardware\Menu.c(158): warning:  #223-D: function "Key_GetNum" declared implicitly
+  	while(Key_GetNum()==0);
+Hardware\Menu.c(210): warning:  #223-D: function "Test" declared implicitly
+  			Test();
+Hardware\Menu.c(217): warning:  #223-D: function "Get_Basic_Setting" declared implicitly
+  			Get_Basic_Setting();
+Hardware\Menu.c(220): warning:  #223-D: function "Sending_test" declared implicitly
+  			Sending_test();
+Hardware\Menu.c(223): warning:  #223-D: function "check_AP_Connection" declared implicitly
+  			if(check_AP_Connection())
+Hardware\Menu.c(232): warning:  #1-D: last line of file ends without a newline
+  }
+Hardware\Menu.c: 35 warnings, 0 errors
+linking...
+Program Size: Code=7700 RO-data=2204 RW-data=500 ZI-data=2660  
+".\Objects\project.axf" - 0 Error(s), 35 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -41,7 +115,7 @@ Package Vendor: Keil
   E:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
