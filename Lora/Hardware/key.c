@@ -15,6 +15,7 @@ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
 		GPIO_Init(GPIOB,&GPIO_InitStructure);
 }
 
+
 uint8_t Key_GetNum(void)
 	{
 	uint8_t KeyNum;
@@ -42,11 +43,7 @@ uint8_t Key_GetNum(void)
 }
 	
 }
-		
 		return KeyNum;
 	
 	}
-	
-
-
 	

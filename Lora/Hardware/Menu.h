@@ -1,7 +1,9 @@
-#include "stm32f10x.h"                
+#ifndef __Menu_h
+#define __Menu_h
+             
 #include "delay.h"
-
-char *menu[]={
+#include "OLED.h"
+const static char *menu[]={
 									"Start",
 									"Setting",
 									"Receive_Test",
@@ -9,17 +11,18 @@ char *menu[]={
 									"Information",
 									"Basic setting",
 									"Sending Test",
-									"WIFI"
+									"WIFI",
+									"Sensor_Test"
 };
 
-char *Setting[]={
+const static char *Setting[]={
 									"Parameter",
 									"back",
 	
 
 };
 									
-char *parameter[]={
+const static char *parameter[]={
 									"BandWidth",
 									"Header",
 									"Power",
@@ -28,7 +31,7 @@ char *parameter[]={
 
 };
 
-char *BW[]={
+const static char *BW[]={
 									"7.8KHZ",
 									"10.4KHZ",
 									"15.6KHZ",
@@ -42,7 +45,7 @@ char *BW[]={
 									"Back"
 
 };
-char *CR[]={
+const static char *CR[]={
 									"4/5",
 									"4/6",
 									"4/7",
@@ -51,7 +54,7 @@ char *CR[]={
 									
 
 };
-char *HEADER[]={
+const static char *HEADER[]={
 									"ON",
 									"OFF",
 									"Back"
@@ -59,7 +62,7 @@ char *HEADER[]={
 									
 
 };
-char *POWER[]={
+const static char *POWER[]={
 									"2dBm",
 									"3dBm",
 									"4dBm",
@@ -104,25 +107,32 @@ void Welcome_menu()
 }
 
 
-void Show_Wifi_Status();
+void Show_Wifi_Status(void);
 
 uint8_t Show_Menu(char *Menu[],uint8_t rows);
 
-	void HEADER_Menu();
+void HEADER_Menu(void);
 
-	void BW_Menu();
+void BW_Menu(void);
 
-
-		void CR_Menu();
+void CR_Menu(void);
 	
-void	Power_Menu();
+void Power_Menu(void);
 
-void	INFORMATION_Menu();
-
+void INFORMATION_Menu(void);
 	
-void Parameter_Menu();
+void Parameter_Menu(void);
 
-void Setting_Menu();
+void Setting_Menu(void);
+
+void Menu(void);
+
+void Receive_Test(void);
+
+void Sending_test(void);
+
+void Menu(void);
+#endif
 
 
-void Menu();
+

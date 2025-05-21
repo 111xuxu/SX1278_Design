@@ -1,4 +1,6 @@
-#include "stm32f10x.h"                  // Device header
+#ifndef __SX1278_h
+#define __SX1278_h
+
 void SX1278_Init(void);
 uint8_t SX1278_SwapByte(uint8_t sendbyte);
 void SX1278_WriteReg(uint8_t addr,uint8_t data);
@@ -8,3 +10,5 @@ int Send_Data(int len);
 int Recieve_Data(void);
 void Get_Basic_Setting(void);
 void SX1278_Basic_Setting(uint8_t len);
+
+#endif

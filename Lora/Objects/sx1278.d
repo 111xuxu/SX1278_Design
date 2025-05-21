@@ -34,3 +34,4 @@
 .\objects\sx1278.o: E:\ARM\ARMCC\Bin\..\include\string.h
 .\objects\sx1278.o: Hardware\OLED.h
 .\objects\sx1278.o: Hardware\Key.h
+.\objects\sx1278.o: Hardware\SX1278.h

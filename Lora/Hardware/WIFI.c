@@ -190,6 +190,7 @@ WIFI_SendString(Join_Ap);
 	}
 Delay_s(3);
 	Connect_Server();
+	return 1;
 }
 
 

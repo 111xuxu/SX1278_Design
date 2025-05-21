@@ -3,5 +3,5 @@
 
 
 
-void MYDMA_Init();
+void MYDMA_Init(void);
 #endif

@@ -37,8 +37,8 @@ static char Data_Container[] =
 "\"Sequence\": 1,\"Soil_humidity\": 51,\"Soil_temperature\": 25,"
 "\"Air_humidity\":30,\"Air_temperature\":24}";
 
-int Connect_Server();
-void  Wifi_USART_Init();
+int Connect_Server(void);
+void  Wifi_USART_Init(void);
 
 void WIFI_SendByte(uint8_t Byte);
 void WIFI_SendArray(uint8_t *Array,uint16_t Length);
@@ -48,6 +48,6 @@ void WIFI_SendNumber(uint32_t Number,uint8_t Length);
 uint8_t WIFI_GetRxData(void);
 uint8_t WIFI_GetRxFlag(void);
 void USART2_IRQHandler(void);
-int Join_AP();
-	int check_AP_Connection();
+int Join_AP(void);
+int check_AP_Connection(void);
 #endif

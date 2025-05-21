@@ -1,13 +1,34 @@
 #include "stm32f10x.h"                
-#include "delay.h"
 #include "Menu.h"
 
 uint8_t Cursor_position=1;
 uint8_t Cursor_choice=1;
-void Setting_Menu();
-void Menu()	;
+extern uint16_t CO2[6];
+
+extern uint8_t temperature;
+extern uint8_t humi;
+void Setting_Menu(void);
+void Menu(void)	;
 int Server_Status=0;
-void Parameter_Menu();
+void Parameter_Menu(void);
+
+void Sensor_Test(void)
+{
+while(1)
+	{
+		OLED_ShowNum(1,5,1111,4);
+	OLED_ShowNum(2,5,AD_GetValue(ADC_Channel_0),4);
+	OLED_ShowNum(1,1,Get_Light(),2);
+
+	Show_DS18B20_Tempreature(3,8);
+Get_Tem_Hum();
+	OLED_ShowNum(3,1,temperature,2);
+		OLED_ShowNum(4,1,humi,2);
+	OLED_ShowNum(4,5,Get_CO2(),4);
+	}
+
+}
+
 
 void Show_Wifi_Status()
 {
@@ -207,7 +228,7 @@ void Menu()
 		case 2:Setting_Menu();
 			break;
 		case 3:
-			Test();
+			Receive_Test();
 		break;
 		case 5:
 			INFORMATION_Menu();
@@ -227,6 +248,9 @@ void Menu()
 		Menu();
 		
 		break;
+		case 9:
+			Sensor_Test();
 }
+
 
 }

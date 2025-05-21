@@ -1,4 +1,4 @@
-.\objects\my_dma.o: My_DMA.c
+.\objects\my_dma.o: Hardware\My_DMA.c
 .\objects\my_dma.o: .\start\stm32f10x.h
 .\objects\my_dma.o: .\start\core_cm3.h
 .\objects\my_dma.o: E:\ARM\ARMCC\Bin\..\include\stdint.h

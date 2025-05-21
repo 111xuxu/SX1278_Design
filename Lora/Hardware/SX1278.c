@@ -5,6 +5,7 @@
 #include <string.h>
 #include "OLED.h"
 #include "Key.h"
+#include "SX1278.h"
 char FIFO_Buffer[256];
 
 char Buffer[128]={
@@ -108,7 +109,7 @@ for(uint8_t i=0;i<len;i++)
 
 
 
-int Send_Data(len)
+int Send_Data(int len)
 {
 
 SX1278_WriteReg(Mode,StandByMode);
@@ -283,7 +284,7 @@ OLED_ShowString(1,12,cr);
 
 
 
-	void Test()
+	void Receive_Test()
 {
 long recieved_times=0;
 if(SX1278_ReadReg(0x42)!=0x12)
@@ -307,8 +308,8 @@ while(1)
 OLED_ShowNum(1,1,recieved_times,3);
 	recieved_times++;
 
-		//if(Key_GetNum()!=0)
-	//break;
+		if(Key_GetNum()!=0)
+	break;
 }
 	
 	OLED_Clear();

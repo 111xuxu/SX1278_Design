@@ -29,16 +29,3 @@
 .\objects\main.o: .\library\stm32f10x_wwdg.h
 .\objects\main.o: .\library\misc.h
 .\objects\main.o: .\system\delay.h
-.\objects\main.o: .\Hardware\serial.h
-.\objects\main.o: .\Hardware\OLED.h
-.\objects\main.o: .\Hardware\SX1278.h
-.\objects\main.o: .\Hardware\My_spi.h
-.\objects\main.o: .\Hardware\SX1278_Reg_Define_Table.h
-.\objects\main.o: E:\ARM\ARMCC\Bin\..\include\string.h
-.\objects\main.o: .\Hardware\Key.h
-.\objects\main.o: E:\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: .\Hardware\CO2.h
-.\objects\main.o: .\Hardware\Light.h
-.\objects\main.o: .\Hardware\Soil_Humidity.h
-.\objects\main.o: .\Hardware\WIFI.h
-.\objects\main.o: E:\ARM\ARMCC\Bin\..\include\stdlib.h

@@ -1012,7 +1012,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\DH11.c</PathWithFileName>
+      <PathWithFileName>.\Hardware\DH11.c</PathWithFileName>
       <FilenameWithoutPath>DH11.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1024,7 +1024,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\DH11.h</PathWithFileName>
+      <PathWithFileName>.\Hardware\DH11.h</PathWithFileName>
       <FilenameWithoutPath>DH11.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1084,7 +1084,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\DS18B20.c</PathWithFileName>
+      <PathWithFileName>.\Hardware\DS18B20.c</PathWithFileName>
       <FilenameWithoutPath>DS18B20.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1096,7 +1096,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\DS18B20.h</PathWithFileName>
+      <PathWithFileName>.\Hardware\DS18B20.h</PathWithFileName>
       <FilenameWithoutPath>DS18B20.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1132,7 +1132,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\My_DMA.c</PathWithFileName>
+      <PathWithFileName>.\Hardware\My_DMA.c</PathWithFileName>
       <FilenameWithoutPath>My_DMA.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1144,7 +1144,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\My_DMA.h</PathWithFileName>
+      <PathWithFileName>.\Hardware\My_DMA.h</PathWithFileName>
       <FilenameWithoutPath>My_DMA.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

@@ -1,4 +1,4 @@
-.\objects\dh11.o: DH11.c
+.\objects\dh11.o: Hardware\DH11.c
 .\objects\dh11.o: .\system\Delay.h
 .\objects\dh11.o: .\start\stm32f10x.h
 .\objects\dh11.o: .\start\core_cm3.h
@@ -29,4 +29,4 @@
 .\objects\dh11.o: .\library\stm32f10x_usart.h
 .\objects\dh11.o: .\library\stm32f10x_wwdg.h
 .\objects\dh11.o: .\library\misc.h
-.\objects\dh11.o: DH11.h
+.\objects\dh11.o: Hardware\DH11.h

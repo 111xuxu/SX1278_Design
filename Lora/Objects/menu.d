@@ -28,5 +28,6 @@
 .\objects\menu.o: .\library\stm32f10x_usart.h
 .\objects\menu.o: .\library\stm32f10x_wwdg.h
 .\objects\menu.o: .\library\misc.h
-.\objects\menu.o: .\system\delay.h
 .\objects\menu.o: Hardware\Menu.h
+.\objects\menu.o: .\system\delay.h
+.\objects\menu.o: Hardware\OLED.h

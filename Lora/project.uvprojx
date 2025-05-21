@@ -333,7 +333,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--diag_suppress 223</MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
               <IncludePath>.\start;.\user;.\library;.\system;.\Hardware</IncludePath>
@@ -718,12 +718,12 @@
             <File>
               <FileName>DH11.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\DH11.c</FilePath>
+              <FilePath>.\Hardware\DH11.c</FilePath>
             </File>
             <File>
               <FileName>DH11.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\DH11.h</FilePath>
+              <FilePath>.\Hardware\DH11.h</FilePath>
             </File>
             <File>
               <FileName>Light.c</FileName>
@@ -748,12 +748,12 @@
             <File>
               <FileName>DS18B20.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\DS18B20.c</FilePath>
+              <FilePath>.\Hardware\DS18B20.c</FilePath>
             </File>
             <File>
               <FileName>DS18B20.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\DS18B20.h</FilePath>
+              <FilePath>.\Hardware\DS18B20.h</FilePath>
             </File>
             <File>
               <FileName>WIFI.c</FileName>
@@ -768,12 +768,12 @@
             <File>
               <FileName>My_DMA.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\My_DMA.c</FilePath>
+              <FilePath>.\Hardware\My_DMA.c</FilePath>
             </File>
             <File>
               <FileName>My_DMA.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\My_DMA.h</FilePath>
+              <FilePath>.\Hardware\My_DMA.h</FilePath>
             </File>
             <File>
               <FileName>Menu.c</FileName>

@@ -1,3 +1,6 @@
+#ifndef __SX1278_Reg_Define_h
+#define __SX1278_Reg_Define_h
+
 #define RegVersion 0x42
 #define SleepMode 0x80
 #define StandByMode 0x81
@@ -13,4 +16,10 @@
 #define CADMode 0x87
 
 
-	
+
+
+
+
+
+
+#endif
