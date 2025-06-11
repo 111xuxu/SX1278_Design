@@ -336,7 +336,7 @@
               <MiscControls>--diag_suppress 223</MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\start;.\user;.\library;.\system;.\Hardware</IncludePath>
+              <IncludePath>.\start;.\user;.\library;.\system;.\Hardware;.\disk</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -815,6 +815,16 @@
               <FileType>5</FileType>
               <FilePath>.\Hardware\MyRTC.h</FilePath>
             </File>
+            <File>
+              <FileName>Write_To_Disk.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Write_To_Disk.c</FilePath>
+            </File>
+            <File>
+              <FileName>Write_To_Disk.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Write_To_Disk.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -854,6 +864,36 @@
               <FileName>stm32f10x_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\user\stm32f10x_conf.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>disk</GroupName>
+          <Files>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\disk\diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\disk\diskio.h</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\disk\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\disk\ff.h</FilePath>
+            </File>
+            <File>
+              <FileName>ffconf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\disk\ffconf.h</FilePath>
             </File>
           </Files>
         </Group>

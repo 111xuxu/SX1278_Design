@@ -267,7 +267,12 @@ void Menu()
 		case 10:
 			Send_Sensor_Data();
 		case 11:
-			SD_Check();
+			
+			if(SD_Check())
+				{
+				 OLED_ShowString(1,1,"SD Ready        ");
+			Delay_s(1);
+			}
 		Menu();
 		case 12:
 			int temp=Get_Time_Stamp();

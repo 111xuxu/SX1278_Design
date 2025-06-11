@@ -32,3 +32,6 @@
 .\objects\main.o: .\Hardware\WIFI.h
 .\objects\main.o: E:\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: .\Hardware\SD_Card.h
+.\objects\main.o: .\disk\ff.h
+.\objects\main.o: .\disk\ffconf.h
+.\objects\main.o: .\disk\diskio.h

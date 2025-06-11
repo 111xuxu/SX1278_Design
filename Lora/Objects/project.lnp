@@ -41,9 +41,12 @@
 ".\objects\power.o"
 ".\objects\sd_card.o"
 ".\objects\myrtc.o"
+".\objects\write_to_disk.o"
 ".\objects\delay.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
+".\objects\diskio.o"
+".\objects\ff.o"
 --strict --scatter ".\Objects\project.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -31,12 +31,18 @@
 #define CMD58 58   /* READ_OCR                */
 #define CMD59 59   /* CRC_ON_OFF              */
 
-/* -------- ”¶”√√¸¡Ó (ACMD = CMD55 ∫Û∏˙) -------- */
-#define ACMD6   6  /* SET_BUS_WIDTH           */
-#define ACMD13 13  /* SD_STATUS               */
-#define ACMD22 22  /* SEND_NUM_WR_BLOCKS      */
-#define ACMD23 23  /* SET_WR_BLK_ERASE_COUNT  */
-#define ACMD41 41  /* SD_SEND_OP_COND         */
-#define ACMD42 42  /* SET_CLR_CARD_DETECT     */
-#define ACMD51 51  /* SEND_SCR                */
+#define Creat_New_File 1
+#define Append_In_File 2
+
+uint8_t SD_Initialize(void);
+
+uint8_t SD_SendCommand(uint8_t cmd, uint32_t arg, uint8_t crc);
+uint8_t SD_Check(void);
+uint8_t SD_Initialize(void);
+uint8_t SD_WriteSector(uint32_t sectorAddr, uint8_t *data);
+uint8_t SD_ReadSector(uint32_t sectorAddr, uint8_t *buffer);
+
 #endif
+
+
+

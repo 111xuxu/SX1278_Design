@@ -36,7 +36,7 @@ uint8_t SD_SendCommand(uint8_t cmd, uint32_t arg, uint8_t crc)
 
 
 
-uint8_t SD_Check(){
+uint8_t SD_Check(void){
 
 uint8_t ocr[4];
 uint8_t r;
@@ -47,25 +47,29 @@ MySPI_SwapByte(0xFF);
 MySPI_SD_Start();
 
 r = SD_SendCommand(CMD58, 0, 0x01);  //7A 00 00 00 00 01
+	
+	
 if (r <= 0x01) {                        
     for (int i = 0; i < 4; i++)
         ocr[i] = MySPI_SwapByte(0xFF); 
 }
 MySPI_SD_Stop();
 
+
 if (r == 0xFF) {
     OLED_ShowString(1,1,"No Response     ");
 	SD_Initialize();
 	return 0;
 	
-} else if (ocr[0]==0xFF && ocr[1]==0xFF &&
-           ocr[2]==0xFF && ocr[3]==0xFF) {
+} else if (ocr[0]==0xFF && ocr[1]==0xFF &&ocr[2]==0xFF && ocr[3]==0xFF) {
     OLED_ShowString(1,1,"SD Not Ready    ");
+						 return 0;
 } else {
     OLED_ShowString(1,1,"SD Ready        ");
+	return 1;
 }
 
-Delay_s(1);
+
 
 }
 
@@ -98,7 +102,7 @@ static int retry=0;
 			}
 			retry =0;
 			
-			Delay_s(1);
+			//Delay_s(1);
 			return 1;      
 		}			
 		 MySPI_SD_Start();
@@ -179,8 +183,8 @@ uint8_t SD_WriteSector(uint32_t sectorAddr, uint8_t *data)
 
     MySPI_SD_Stop();
     MySPI_SwapByte(0xFF);
-OLED_ShowString(1,1,"Write Succeed   ");
-			Delay_s(1);
+//OLED_ShowString(1,1,"Write Succeed   ");
+			//Delay_s(1);
     return 0; 
 }
 
@@ -225,6 +229,6 @@ uint8_t SD_ReadSector(uint32_t sectorAddr, uint8_t *buffer)
     MySPI_SD_Stop();
     MySPI_SwapByte(0xFF); 
 OLED_ShowString(1,1,"Read Succeed    ");
-			Delay_s(1);
+			//Delay_s(1);
     return 0;
 }

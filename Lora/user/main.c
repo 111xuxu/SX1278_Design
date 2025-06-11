@@ -3,6 +3,9 @@
 #include "WIFI.h"
 #include <string.h>  
 #include "SD_Card.h"
+#include "ff.h"
+#include "diskio.h"
+
 extern uint16_t CO2[6];
 uint16_t CO2_Concentration=0;
 uint8_t temperature;
@@ -11,6 +14,9 @@ extern uint16_t MyRTC_Time[];
 uint8_t test[];
 uint8_t SD_Recieve_buffer[512];
 uint8_t SD_Write_buffer[512];
+char File_Name[20];
+    char Content[32];
+		
 
 /*在FIFO中一共有三个指针，分别是发送缓冲区的基地址（0x0E），接受缓冲区的基地址（0x0F），
 以及访问0x0D也就是FIFO时开始的地址*/
@@ -23,6 +29,17 @@ uint8_t SD_Write_buffer[512];
 /*                            结合                       */
 /*                            结合                       */
 /*                            结合                       */
+
+
+
+
+
+
+
+
+
+
+
 int Wait_or_Found(uint16_t ms,char *str){
 	
 for(int i=0;i<ms;i++)
@@ -63,7 +80,6 @@ int main(void)
 
 {
 	
-	//GPIO_WriteBit(GPIOA, GPIO_Pin_12, 1);
 	OLED_Init();
 	
 	/*OLED_ShowNum(1,1,23,2);
@@ -151,6 +167,30 @@ int main(void)
   free(data);
 	*/
 	
+	
+	/*uint16_t index=100;
+	while(1){
+	index++;
+	 sprintf(File_Name, "LOG%04d.TXT", index);
+	
+	MyRTC_ReadTime();
+		sprintf(Content, "%04d-%02d-%02d %02d:%02d:%02d\r\n",
+            MyRTC_Time[0], MyRTC_Time[1], MyRTC_Time[2],
+            MyRTC_Time[3], MyRTC_Time[4], MyRTC_Time[5]);
+	WriteFileToSD(File_Name,Content,Creat_New_File);       // 写入文件	
+	}
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	memset(SD_Write_buffer,0xAA,512);
+
 	Welcome_menu();
 	while(Key_GetNum()==0);
 	OLED_Clear();
