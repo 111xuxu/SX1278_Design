@@ -14,6 +14,8 @@
 #define FIFO 0x00
 #define Continue_Recieve 0x85
 #define CADMode 0x87
+#define Sync_Word_Reg 0x39
+#define Syne_Word 0x13
 
 
 

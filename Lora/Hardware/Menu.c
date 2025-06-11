@@ -1,10 +1,10 @@
 #include "stm32f10x.h"                
 #include "Menu.h"
-
+extern uint16_t MyRTC_Time[];
 uint8_t Cursor_position=1;
 uint8_t Cursor_choice=1;
 extern uint16_t CO2[6];
-
+int Time_Status=0;
 extern uint8_t temperature;
 extern uint8_t humi;
 void Setting_Menu(void);
@@ -16,14 +16,14 @@ void Sensor_Test(void)
 {
 while(1)
 	{
-		OLED_ShowNum(1,5,1111,4);
+	OLED_ShowNum(1,5,1111,4);
 	OLED_ShowNum(2,5,AD_GetValue(ADC_Channel_0),4);
 	OLED_ShowNum(1,1,Get_Light(),2);
 
 	Show_DS18B20_Tempreature(3,8);
-Get_Tem_Hum();
+	Get_Tem_Hum();
 	OLED_ShowNum(3,1,temperature,2);
-		OLED_ShowNum(4,1,humi,2);
+	OLED_ShowNum(4,1,humi,2);
 	OLED_ShowNum(4,5,Get_CO2(),4);
 	}
 
@@ -47,6 +47,20 @@ void Show_Wifi_Status()
 
 }
 
+
+void Show_Time()
+{
+	if(Time_Status)
+	{
+		OLED_ShowNum(1, 11, MyRTC_Time[3], 2);
+		OLED_ShowChar(1, 13, ':');
+		OLED_ShowNum(1, 14, MyRTC_Time[4], 2);
+
+	}
+
+}
+
+
 uint8_t Show_Menu(char *Menu[],uint8_t rows)
 {
 	
@@ -57,6 +71,7 @@ uint8_t j=0;
 	while(1)
 	{
 		Show_Wifi_Status();
+		Show_Time();
 		//OLED_ShowNum(4,14,Cursor_choice,2);
 		for(int i=0;i<4&& (i + j) < rows;i++)
 	{
@@ -175,7 +190,7 @@ void	Power_Menu()
 
 void	INFORMATION_Menu()
 {
-OLED_ShowString(1,1,"Version:1.0");
+OLED_ShowString(1,1,"Version:2.0");
 	while(Key_GetNum()==0);
 
 
@@ -198,14 +213,13 @@ switch (Show_Menu(parameter,sizeof(parameter) / sizeof(parameter[0])))
 		case 4:
 			CR_Menu();
 			break;
-		
-		
-		
-			
 }
 			Setting_Menu();
 
 }
+
+
+
 
 void Setting_Menu()
 {
@@ -238,7 +252,7 @@ void Menu()
 			Get_Basic_Setting();
 	Menu();
 		case 7:
-			Sending_test();
+					Sending_test();
 		case 8:
 			
 			if(check_AP_Connection())
@@ -250,6 +264,20 @@ void Menu()
 		break;
 		case 9:
 			Sensor_Test();
+		case 10:
+			Send_Sensor_Data();
+		case 11:
+			SD_Check();
+		Menu();
+		case 12:
+			int temp=Get_Time_Stamp();
+		OLED_ShowNum(1,1,temp,1);
+		Delay_s(2);
+		 if(temp)
+			 Time_Status=1;
+		 else
+			 Time_Status=0;
+		Menu();
 }
 
 
