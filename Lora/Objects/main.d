@@ -29,3 +29,6 @@
 .\objects\main.o: .\library\stm32f10x_wwdg.h
 .\objects\main.o: .\library\misc.h
 .\objects\main.o: .\system\delay.h
+.\objects\main.o: .\Hardware\WIFI.h
+.\objects\main.o: E:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: .\Hardware\SD_Card.h

@@ -37,6 +37,10 @@ static char Data_Container[] =
 "\"Sequence\": 1,\"Soil_humidity\": 51,\"Soil_temperature\": 25,"
 "\"Air_humidity\":30,\"Air_temperature\":24}";
 
+
+static char Connect_To_Time_Server[] ={"AT+CIPSTART=\42TCP\42,\42api.pinduoduo.com\42,80\r\n"};
+static char Get_Time_From_Internet[] ={"GET http://api.pinduoduo.com/api/server/_stm\r\n"};
+
 int Connect_Server(void);
 void  Wifi_USART_Init(void);
 

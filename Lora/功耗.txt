@@ -1,0 +1,6 @@
+CO2浓度检测：45mA
+DS18B20：
+DHT11：
+Light：7mA
+
+

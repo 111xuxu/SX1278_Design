@@ -12,7 +12,10 @@ const static char *menu[]={
 									"Basic setting",
 									"Sending Test",
 									"WIFI",
-									"Sensor_Test"
+									"Sensor_Test",
+									"Send_Sensor_data",
+									"SD_Test",
+									"Get_Time"
 };
 
 const static char *Setting[]={
@@ -100,10 +103,13 @@ void Set_Cursor(uint8_t	i)
 
 void Welcome_menu()
 {
+	
+	//if(Get_Time_Stamp());
+
 	OLED_ShowString(1,1,"  Welcome to    ");
 	OLED_ShowString(2,1,"     LoRa       ");
-	OLED_ShowString(3,1,"    Press to    ");
-	OLED_ShowString(4,1,"    continue    ");
+	OLED_ShowString(3,1,"   press to     ");
+	OLED_ShowString(4,1,"   continue     ");
 }
 
 
