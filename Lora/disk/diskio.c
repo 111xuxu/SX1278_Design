@@ -36,7 +36,8 @@ DSTATUS disk_status(BYTE pdrv)
 DSTATUS disk_initialize(BYTE pdrv)
 {
     if (pdrv != 0) return STA_NOINIT;
-
+//SD_Initialize();
+	//Delay_ms(20);
     // 你可以调用 SD_Initialize() 或略过初始化逻辑（因为主程序中初始化过）
     return 0;
 }

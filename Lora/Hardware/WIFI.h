@@ -2,16 +2,15 @@
 #define __WIFI_h
 
 typedef struct {
-	int ID;
-	float Soil_temperature;
-	float Soil_humidity;
-	float Light_time;
-	float CO2_concentration;
-	float Air_temperature;
-	float Air_humidity;
-
-
-}Data;
+    int16_t ID;
+    int16_t Soil_temperature;
+    int16_t Soil_humidity;
+    int16_t Light_time;
+    int16_t CO2_concentration;
+    int16_t Air_temperature;
+    int16_t Air_humidity;
+    char Record_Time[128];
+} Data;
 
 
 static char Recieve_String[500];

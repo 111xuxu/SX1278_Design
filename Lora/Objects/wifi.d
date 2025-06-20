@@ -33,4 +33,4 @@
 .\objects\wifi.o: Hardware\OLED.h
 .\objects\wifi.o: .\system\delay.h
 .\objects\wifi.o: E:\ARM\ARMCC\Bin\..\include\string.h
-.\objects\wifi.o: E:\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\wifi.o: E:\ARM\ARMCC\Bin\..\include\stdbool.h

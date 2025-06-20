@@ -88,6 +88,31 @@ const static char *POWER[]={
 
 };
 
+const static char *Start_Choose_Role[]={
+
+
+	"Edge Device",
+	"Central Device",
+	"Back"
+	
+	
+};
+
+const static char *Choose_Device_ID[]={
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8",
+	"9",
+	"10",
+	"11",
+	"12",
+	"13"
+};
 
 
 void Set_Cursor(uint8_t	i)

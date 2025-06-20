@@ -31,3 +31,13 @@
 .\objects\menu.o: Hardware\Menu.h
 .\objects\menu.o: .\system\delay.h
 .\objects\menu.o: Hardware\OLED.h
+.\objects\menu.o: Hardware\SX1278_Reg_Define_Table.h
+.\objects\menu.o: .\Hardware\MyRTC.h
+.\objects\menu.o: E:\ARM\ARMCC\Bin\..\include\time.h
+.\objects\menu.o: Hardware\SD_Card.h
+.\objects\menu.o: .\disk\ff.h
+.\objects\menu.o: .\disk\ffconf.h
+.\objects\menu.o: .\disk\diskio.h
+.\objects\menu.o: E:\ARM\ARMCC\Bin\..\include\String.h
+.\objects\menu.o: Hardware\WIFI.h
+.\objects\menu.o: E:\ARM\ARMCC\Bin\..\include\math.h

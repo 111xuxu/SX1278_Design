@@ -4,10 +4,12 @@
 #include "OLED.h"
 #include "delay.h"
 #include <string.h>
-#include <stdio.h>
+#include <stdbool.h>
 uint8_t Recieved_String_Size;
 char WIFI_temp[500];
 static int tried_times=0;
+uint8_t data_ready_flag;
+
 void  Wifi_USART_Init()
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
@@ -138,7 +140,7 @@ void USART2_IRQHandler(void)
 			USART_ClearITPendingBit(USART2, USART_IT_IDLE);
 				Recieved_String_Size= 500-DMA_GetCurrDataCounter(DMA1_Channel6);
 				DMA_Cmd(DMA1_Channel6, DISABLE);
-        WIFI_temp[Recieved_String_Size]='\0';
+       
 			
 			
 				DMA_SetCurrDataCounter(DMA1_Channel6, 500);
@@ -147,7 +149,7 @@ void USART2_IRQHandler(void)
 				String_Copy(Recieve_String,WIFI_temp,Recieved_String_Size+1);
 			Recieve_String[Recieved_String_Size]='\0';
 				DMA_Cmd(DMA1_Channel6, ENABLE);
-			
+			data_ready_flag = 1; 
      
     }
 		
@@ -155,6 +157,33 @@ void USART2_IRQHandler(void)
 		
 }
 
+
+
+
+int Wait_or_Found(uint16_t timeout_ms, const char *target)
+{
+    char temp_buf[500] = {0};
+
+    for (uint16_t elapsed = 0; elapsed < timeout_ms; elapsed += 5)
+    {
+        if (data_ready_flag)
+        {
+            data_ready_flag = 0;
+
+            __disable_irq();
+            strncpy(temp_buf, Recieve_String, sizeof(temp_buf) - 1);
+            __enable_irq();
+
+            if (strstr(temp_buf, "ERROR")) return 2;
+            if (strstr(temp_buf, "busy")) continue;
+            if (strstr(temp_buf, target)) return 1;
+        }
+
+        Delay_ms(5);
+    }
+
+    return 0;
+}
 
 
 void Show_Recieved_WIFI_Data()
@@ -196,81 +225,87 @@ Delay_s(3);
 
 
 int Connect_Server()
-	
 {
-	Recieve_String[0] = '\0';
-		
-		OLED_ShowString(1,1,"Connecting...");
-		WIFI_SendString(Check_AT);
-	Delay_ms(200);
+	  WIFI_SendString("+++");
+    Delay_ms(80); 
+    WIFI_SendString("+++");
+    Delay_ms(80);
+    tried_times++;
+    if (tried_times > 5)
+    {
+        OLED_ShowString(1,1,"Too many retries");
+        return 0;
+    }
 
-		WIFI_SendString(Change_CIPMODE);
-	Delay_ms(200);
-	WIFI_SendString(Connect_To_Server);
-	Delay_ms(200);
-	
-	
-	WIFI_SendString(Connection_Status);
-	Delay_ms(200);
-	
-	
-	char *p=strstr(Recieve_String,"STATUS:");
-	if(!p)
-		Connect_Server();
-	
-	p+=7;
-	
-	int Status=(int)*p-'0';
-	
-	switch (Status){
-		case 3:
-			tried_times=0;
-					return 1;
-					
-		case 5:
-			if(Join_AP()==0)
-		return 0;
-		
-	}
-	
-	}
+    OLED_ShowString(1,1,"Connecting...");
+
+    Recieve_String[0] = '\0';
+    WIFI_SendString(Check_AT);
+    if (!Wait_or_Found(1000, "OK")) return 0;
+
+    WIFI_SendString(Change_CIPMODE);
+    if (!Wait_or_Found(1000, "OK")) return 0;
+
+    WIFI_SendString(Connect_To_Server);
+    if (!Wait_or_Found(3000, "CONNECT")) return 0;
+
+    WIFI_SendString(Connection_Status);
+    if (!Wait_or_Found(1000, "STATUS:")) return 0;
+
+    char *p = strstr(Recieve_String, "STATUS:");
+    if (!p) return Connect_Server(); 
+
+    int Status = *(p + 7) - '0';
+    if (Status == 3)
+    {
+        tried_times = 0;
+        return 1;
+    }
+    else if (Status == 5)
+    {
+        return Join_AP();
+    }
+
+    return 0;
+}
+
 
 	
 	int check_AP_Connection()
-	{
-	
-	Recieve_String[0] = '\0';
-		WIFI_SendString(Check_AT);
-	Wait_or_Found(200,"OK");
-	WIFI_SendString(Connection_Status);
-	Delay_ms(200);
-	
-	
-	char *p=strstr(Recieve_String,"STATUS:");
-	if(!p)
-		Connect_Server();
-	
-	p+=7;
-	
-	int Status=(int)*p-'0';
-	
-	switch (Status){
-		case 1:
-					return 0;
-		case 5:
-		return 0;
-		default:
-			return 1;
-		
-	}
-	
-	
+{
+   
+    WIFI_SendString(Check_AT);
+    if (!Wait_or_Found(1000, "OK")) return 0;
+
+    
+    WIFI_SendString(Connection_Status);
+    if (!Wait_or_Found(1000, "STATUS:")) return Connect_Server();
+
+   
+    char *p = strstr(Recieve_String, "STATUS:");
+    if (!p) return Connect_Server();
+
+    int Status = *(p + 7) - '0';
+
+    switch (Status)
+    {
+        case 1:
+					 
+        case 5:
+					
+            return 0;
+        default:
+            return 1; 
+    }
+}
 	
 	
-	}
+	
+	
+	
 	
 
-void Send_Http(Data* data)
+/*void Send_Http(Data* data)
 	
 {
 	Delay_s(1);
@@ -315,103 +350,177 @@ char http[512];
 				WIFI_SendString(http);
 				Delay_ms(1000);
 				WIFI_SendString("+++");
-				//char *p=strstr(Recieve_String,"success");
+			
 			}	
 	
 }
 
+*/
 
-int Get_Time_Stamp(){
-	Recieve_String[0] = '\0';
-WIFI_SendString("+++");
-				Delay_ms(50);
-				WIFI_SendString("+++");
-				Delay_ms(50);
-	Recieve_String[0] = '\0';
-	      WIFI_SendString(Disconnect_To_Server);
-Wait_or_Found(1000,"OK");
-	Recieve_String[0] = '\0';
-WIFI_SendString(Change_CIPMODE);
-	Wait_or_Found(2000,"OK");
-	
-	Recieve_String[0] = '\0';
-	WIFI_SendString(Connect_To_Time_Server);
-	
-	if(Wait_or_Found(3000,"CON"))
-	{	
-		for(int i=0;i<sizeof(Recieve_String);i++)
-		OLED_ShowChar(2,i,Recieve_String[i]);
-		
-		OLED_ShowString(1,1,"server connected");
-	}
-	else 
-	{
-		
-		USART_SendString(Recieve_String);
-		for(int i=0;i<8;i++)
-		OLED_ShowHexNum(2,i*2,Recieve_String[i],2);
-		OLED_ShowNum(1,3,111,3);
-		OLED_ShowString(3,1,Recieve_String);
-		Delay_s(2);
-		//while(1);
-		return 2;
-	}
-	Recieve_String[0] = '\0';
-	WIFI_SendString(CIP_Send);
-	if(Wait_or_Found(2000,"OK"))
-		OLED_ShowString(1,1,"request send    ");
-	else return 3;
-	
-  OLED_ShowString(1,1,"Getting data...   ");    
-	WIFI_SendString(Get_Time_From_Internet);
-	Delay_ms(2000);
-	
-	
-	if(Recieve_String[3]=='e'&&Recieve_String[4]=='r')
-	{
-		char snap[128];
-    size_t n = strlen((char*)Recieve_String);
-    if (n >= sizeof(snap))
-			n = sizeof(snap) - 1;
-    memcpy(snap, (char*)Recieve_String, n);
-    snap[n] = '\0';
-		unsigned long long ms = 0ULL;
-		int temp=sscanf(snap, "{\"server_time\":%llu}", &ms);
-	
-		if (sscanf(snap, "{\"server_time\":%llu}", &ms) == 1)
-		{
-			uint32_t cnt = (uint32_t)(ms / 1000ULL)-7*3600;
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
-    PWR_BackupAccessCmd(ENABLE);
-    RTC_EnterConfigMode();
-    RTC_SetCounter(cnt);        
-    RTC_ExitConfigMode();
-    RTC_WaitForLastTask();
 
-    PWR_BackupAccessCmd(DISABLE);
-		
-		}
-		
-		Delay_ms(200);
-				WIFI_SendString("+++");
-				Delay_ms(50);
-				WIFI_SendString("+++");
-				Delay_ms(50);
-	      WIFI_SendString(Disconnect_To_Server);
-Delay_ms(200);
-	return 1;
-		
-	}
-	Delay_ms(200);
-				WIFI_SendString("+++");
-				Delay_ms(50);
-				WIFI_SendString("+++");
-				Delay_ms(50);
-	      WIFI_SendString(Disconnect_To_Server);
-Delay_ms(200);
-	return 4;
+
+
+int Send_Http(Data* data)
+{
+
+    int statu = Connect_Server();
+    if (statu != 1) return 0;
+
+    char json[512];
+	
+	
+   int json_len = snprintf(json, sizeof(json),
+    "{\"CO2_concentration\":%d,"
+    "\"ID\": %d,"
+    "\"Record_Time\": \"%s\","
+    "\"Light_time\": %d,"
+    "\"Soil_humidity\":  %d,"
+    "\"Soil_temperature\":  %d,"
+    "\"Air_humidity\": %d,"
+    "\"Air_temperature\": %d}",
+    data->CO2_concentration,
+    data->ID,
+    data->Record_Time,
+    data->Light_time,
+    data->Soil_humidity,
+    data->Soil_temperature,
+    data->Air_humidity,
+    data->Air_temperature);
+
+
+
+    char http[512];
+    int http_len = snprintf(
+        http, sizeof(http),
+        "POST /postdata HTTP/1.1\r\n"
+        "Host: %s\r\n"
+        "Content-Type: application/json\r\n"
+        "Content-Length: %d\r\n"
+        "Connection: close\r\n"
+        "\r\n"
+        "%s",
+        "8.208.52.104", json_len, json
+    );
+
+    WIFI_SendString(CIP_Send);
+    if (Wait_or_Found(2000, ">") != 1) {
+        OLED_ShowString(1, 1, "Send Cmd Fail");
+        return 2;
+    }
+
+     //清空接收缓冲（避免上次响应影响）
+    Recieve_String[0] = '\0';
+    data_ready_flag = 0;
+
+    WIFI_SendString(http);
+
+     //等待 服务器返回 "200 OK"
+    int result = Wait_or_Found(5000, "200 OK");
+
+    if (result == 1) {
+        OLED_ShowString(1, 1, "HTTP 200 OK     ");
+          WIFI_SendString("+++");
+    Delay_ms(80); 
+    WIFI_SendString("+++");
+    Delay_ms(80);
+        return 1;
+    } else if (result == 2) {
+        OLED_ShowString(1, 1, "Server Error    ");
+          WIFI_SendString("+++");
+    Delay_ms(80); 
+    WIFI_SendString("+++");
+    Delay_ms(80);
+        return 3;
+    } else {
+        OLED_ShowString(1, 1, "No Response     ");
+          WIFI_SendString("+++");
+    Delay_ms(80); 
+    WIFI_SendString("+++");
+    Delay_ms(80);
+        return 4;
+    }
 }
 
+int Get_Time_Stamp()
+{
+    Recieve_String[0] = '\0';
+
+   
+    WIFI_SendString("+++");
+    Delay_ms(80); 
+    WIFI_SendString("+++");
+    Delay_ms(80);
+
+   
+    Recieve_String[0] = '\0';
+    WIFI_SendString(Disconnect_To_Server);
+    if (!Wait_or_Found(1000, "OK"))
+    return 2;
+
+   
+    Recieve_String[0] = '\0';
+    WIFI_SendString(Change_CIPMODE);
+    if (!Wait_or_Found(2000, "OK")) return 2;
+
+   
+    Recieve_String[0] = '\0';
+    WIFI_SendString(Connect_To_Time_Server);
+    if (!Wait_or_Found(3000, "CONNECT"))
+    {
+       
+        return 2;
+    }
+
+ 
+
+ 
+    Recieve_String[0] = '\0';
+    WIFI_SendString(CIP_Send);
+    if (!Wait_or_Found(2000, "OK"))
+        return 3;
+
+   
+
+   
+    Recieve_String[0] = '\0';
+    WIFI_SendString(Get_Time_From_Internet);
+
+    if (!Wait_or_Found(3000, "server_time"))
+    {
+      
+			
+        return 4;
+    }
+
+    
+    unsigned long long ms = 0ULL;
+    if (sscanf(Recieve_String, "{\"server_time\":%llu}", &ms) != 1)
+    {
+        
+        return 5;
+    }
+
+   
+    uint32_t cnt = (uint32_t)(ms / 1000ULL) - 7 * 3600; // 东八区偏移
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
+    PWR_BackupAccessCmd(ENABLE);
+    RTC_EnterConfigMode();
+    RTC_SetCounter(cnt);
+    RTC_ExitConfigMode();
+    RTC_WaitForLastTask();
+    PWR_BackupAccessCmd(DISABLE);
+
+    OLED_ShowString(1, 1, "Time OK");
+    
+    WIFI_SendString("+++");
+    Delay_ms(50);
+    WIFI_SendString("+++");
+    Delay_ms(50);
+    WIFI_SendString(Disconnect_To_Server);
+    Delay_ms(100);
+
+    return 1; 
+}
 
 
 

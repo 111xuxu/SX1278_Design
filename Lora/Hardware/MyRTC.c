@@ -39,46 +39,7 @@ void MyRTC_Init(void)
 	}
 }
 
-/*
-void MyRTC_Init(void)
-{
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_BKP, ENABLE);
-	
-	PWR_BackupAccessCmd(ENABLE);
-	
-	if (BKP_ReadBackupRegister(BKP_DR1) != 0xA5A5)
-	{
-		BKP_DeInit();
-	
-		RCC_LSICmd(ENABLE);
-		while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET);
-		
-		RCC_RTCCLKConfig(RCC_RTCCLKSource_LSI);
-		RCC_RTCCLKCmd(ENABLE);
-		
-		RTC_WaitForSynchro();
-		RTC_WaitForLastTask();
-		
-		RTC_SetPrescaler(40000 - 1);
-		RTC_WaitForLastTask();
-		
-		MyRTC_SetTime();
-		
-		BKP_WriteBackupRegister(BKP_DR1, 0xA5A5);
-	}
-	else
-	{
-		RCC_LSICmd(ENABLE);
-		while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET);
-		
-		RCC_RTCCLKConfig(RCC_RTCCLKSource_LSI);
-		RCC_RTCCLKCmd(ENABLE);
-		
-		RTC_WaitForSynchro();
-		RTC_WaitForLastTask();
-	}
-}*/
+
 
 void MyRTC_SetTime(void)
 {
@@ -93,6 +54,17 @@ void MyRTC_SetTime(void)
 	time_date.tm_sec = MyRTC_Time[5];
 	
 	time_cnt = mktime(&time_date) - 8 * 60 * 60;
+	
+	RTC_SetCounter(time_cnt);
+	RTC_WaitForLastTask();
+}
+
+void MyRTC_UpdateTime(struct tm *Time_Structure)
+{
+	time_t time_cnt;
+	
+	
+ time_cnt = mktime(Time_Structure) - 8 * 60 * 60;
 	
 	RTC_SetCounter(time_cnt);
 	RTC_WaitForLastTask();

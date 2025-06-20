@@ -17,6 +17,7 @@ uint8_t SD_Write_buffer[512];
 char File_Name[20];
     char Content[32];
 		
+		
 
 /*在FIFO中一共有三个指针，分别是发送缓冲区的基地址（0x0E），接受缓冲区的基地址（0x0F），
 以及访问0x0D也就是FIFO时开始的地址*/
@@ -31,32 +32,6 @@ char File_Name[20];
 /*                            结合                       */
 
 
-
-
-
-
-
-
-
-
-
-int Wait_or_Found(uint16_t ms,char *str){
-	
-for(int i=0;i<ms;i++)
-{
-	USART_ITConfig(USART2, USART_IT_RXNE, DISABLE);
-	NVIC_DisableIRQ(USART2_IRQn);
-char *p=strstr(Recieve_String,str);
-	NVIC_EnableIRQ(USART2_IRQn);
-	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
-	
-	if(p) return 1;
-	
-	Delay_ms(1);
-	
-}
-return 0;
-}
 
 
 uint8_t Get_Tem_Hum()
@@ -146,7 +121,7 @@ int main(void)
 
 	//Delay_ms(2000);
 
-	/*Data *data= (Data*)malloc(sizeof (Data));
+	Data *data= (Data*)malloc(sizeof (Data));
 	
 	data->CO2_concentration=120;
 	data->ID=15;
@@ -155,42 +130,39 @@ int main(void)
 	data->Soil_temperature=16;
 	data->Air_humidity=17;
 	data->Air_temperature=18;
+	snprintf(data->Record_Time,128, "2025-06-20 12:22:34");
 	Send_Http(data);
-	data->CO2_concentration=120;
+	/*data->CO2_concentration=120;
 	data->ID=13;
 	data->Light_time=0;
 	data->Soil_humidity=35;
 	data->Soil_temperature=36;
 	data->Air_humidity=37;
 	data->Air_temperature=38;
-	Send_Http(data);
+	snprintf(data->Record_Time, sizeof(data->Record_Time), "2025-06-20 12:22:34");
+	Send_Http(data);*/
   free(data);
-	*/
 	
+
+/*	uint16_t index=456;
 	
-	/*uint16_t index=100;
-	while(1){
-	index++;
-	 sprintf(File_Name, "LOG%04d.TXT", index);
-	
+
+
+	 sprintf(File_Name, "LOG12345.TXT");
+	while(1)
+	{
 	MyRTC_ReadTime();
 		sprintf(Content, "%04d-%02d-%02d %02d:%02d:%02d\r\n",
             MyRTC_Time[0], MyRTC_Time[1], MyRTC_Time[2],
             MyRTC_Time[3], MyRTC_Time[4], MyRTC_Time[5]);
-	WriteFileToSD(File_Name,Content,Creat_New_File);       // 写入文件	
+	WriteFileToSD(File_Name,Content,Append_In_File);       // 写入文件	
+Delay_s(1);
 	}
-	
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	memset(SD_Write_buffer,0xAA,512);
 
+Get_Basic_Setting();
+	Delay_ms(1000);
+*/
+	//Delay_ms(1000);
 	Welcome_menu();
 	while(Key_GetNum()==0);
 	OLED_Clear();

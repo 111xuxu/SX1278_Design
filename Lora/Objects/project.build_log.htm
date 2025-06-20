@@ -27,10 +27,37 @@ Project File Date:  06/11/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'E:\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling WIFI.c...
 compiling main.c...
+compiling Menu.c...
+Hardware\Menu.c(24): warning:  #1295-D: Deprecated declaration Menu - give arg types
+  void Menu();
+Hardware\Menu.c(145): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  	switch (Show_Menu(HEADER,sizeof(HEADER) / sizeof(HEADER[0])))
+Hardware\Menu.c(164): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  	SX1278_WriteReg(0x1D,((SX1278_SwapByte(0x1D)&0x0F)|BW_Parameter[Show_Menu(BW,sizeof(BW) / sizeof(BW[0]))-1]));
+Hardware\Menu.c(174): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  switch (Show_Menu(CR,sizeof(CR) / sizeof(CR[0])))
+Hardware\Menu.c(198): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  	SX1278_WriteReg(0x09,((SX1278_SwapByte(0x09)&0xF0)|Power_Parameter[Show_Menu(POWER,sizeof(POWER) / sizeof(POWER[0]))-1]));
+Hardware\Menu.c(216): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  switch (Show_Menu(parameter,sizeof(parameter) / sizeof(parameter[0])))
+Hardware\Menu.c(240): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  switch (Show_Menu(Setting,sizeof(Setting) / sizeof(Setting[0])))
+Hardware\Menu.c(262): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  	Device_ID=Show_Menu(Choose_Device_ID,sizeof(Choose_Device_ID) / sizeof(Choose_Device_ID[0]));
+Hardware\Menu.c(365): warning:  #177-D: variable "Record_Time"  was declared but never referenced
+  			static char Record_Time[30];
+Hardware\Menu.c(458): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  switch (Show_Menu(Start_Choose_Role,sizeof(Start_Choose_Role) / sizeof(Start_Choose_Role[0])))
+Hardware\Menu.c(481): warning:  #167-D: argument of type "const char **" is incompatible with parameter of type "char **"
+  	switch (Show_Menu(menu,sizeof(menu) / sizeof(menu[0])))
+Hardware\Menu.c(529): warning:  #1182-D: a declaration cannot have a label
+  			int temp=Get_Time_Stamp();
+Hardware\Menu.c: 12 warnings, 0 errors
 linking...
-Program Size: Code=14516 RO-data=2540 RW-data=644 ZI-data=3668  
-".\Objects\project.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=23688 RO-data=3156 RW-data=740 ZI-data=3972  
+".\Objects\project.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,7 +71,7 @@ Package Vendor: Keil
   E:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
