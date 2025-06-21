@@ -9,7 +9,7 @@ typedef struct {
     int16_t CO2_concentration;
     int16_t Air_temperature;
     int16_t Air_humidity;
-    char Record_Time[128];
+    char Record_Time[30];
 } Data;
 
 

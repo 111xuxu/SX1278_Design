@@ -13,10 +13,12 @@ extern uint16_t MyRTC_Time[];
 extern char Buffer[128];
 uint8_t Cursor_position=1;
 uint8_t Cursor_choice=1;
+static int dry_value=2100;
+static int wet_value=900;
 extern uint16_t CO2[6];
 int Time_Status=0;
-extern uint8_t temperature;
-extern uint8_t humi;
+extern int16_t temperature;
+extern int16_t humi;
 void Setting_Menu(void);
 void Menu(void)	;
 int Server_Status=0;
@@ -265,7 +267,14 @@ Menu();
 			
 		Send_times++;
 			OLED_ShowNum(2,1,Send_times,3);
-			soil_Humidity=AD_GetValue(ADC_Channel_0)/100;
+			
+			
+			//soil_Humidity=AD_GetValue(ADC_Channel_0)/100;
+			
+			
+			soil_Humidity = (dry_value - AD_GetValue(ADC_Channel_0)) * 100 / (dry_value - wet_value);
+			if (soil_Humidity < 0) soil_Humidity = 0;
+			if (soil_Humidity > 100) soil_Humidity = 100;
 				soil_Temperature=DS18B20_Get_Temp();
 			CO2=Get_CO2();
 			MyRTC_ReadTime();
@@ -283,18 +292,19 @@ Menu();
 			Buffer[11]=(CO2>>8)&0xff;   //co2 value 1
 			Buffer[12]=(CO2&0xff);      //co2 value 2
 			Buffer[13]=light;
-	
 			Buffer[14]=soil_Temperature;
+			
 			Buffer[15]=soil_Humidity;
 			Buffer[16]=temperature;
 			Buffer[17]=humi;
+			
 			
 			uint32_t check_temp=Buffer[11]+Buffer[12]+Buffer[13]+Buffer[14]+Buffer[15]+Buffer[16]+Buffer[17];
 			
 			Buffer[18]=(check_temp >> 16) & 0xFF;
 			Buffer[19]=(check_temp >>  8) & 0xFF;
 			Buffer[20]=(check_temp      ) & 0xFF;
-			
+			USART_SendArray(Buffer,128);
 			Edge_Device_Send_Data();
 
 			if(Recieve_Data(1))
@@ -380,7 +390,7 @@ Menu();
 		
 		{//验证check value
 			Rec_times++;
-			OLED_ShowNum(4,1,Rec_times,3);
+			//OLED_ShowNum(4,1,Rec_times,3);
 			MyRTC_ReadTime();
 			if(abs(MyRTC_Time[4]-Central_Recieved_Packet[9])>1)
 				Buffer[3]=2;
@@ -410,14 +420,21 @@ Menu();
 				
 uint16_t CO2_Temp=(int)Central_Recieved_Packet[11] << 8 | (int)Central_Recieved_Packet[12];
 		Data *data = (Data*)calloc(1, sizeof(Data)); // 初始化为0
-data->ID = (uint32_t)Central_Recieved_Packet[4];
-data->CO2_concentration = (float)CO2_Temp;
-data->Light_time = (float)Central_Recieved_Packet[13];
-data->Soil_temperature = (float)Central_Recieved_Packet[14];
-data->Soil_humidity = (float)Central_Recieved_Packet[15];
-data->Air_temperature = (float)Central_Recieved_Packet[16];
-data->Air_humidity = (float)Central_Recieved_Packet[17];
-
+data->ID = (int)Central_Recieved_Packet[4];
+data->CO2_concentration = (int)CO2_Temp;
+data->Light_time = (int)Central_Recieved_Packet[13];
+data->Soil_temperature = (int)Central_Recieved_Packet[14];
+data->Soil_humidity = (int)Central_Recieved_Packet[15];
+data->Air_temperature = (int)Central_Recieved_Packet[16];
+data->Air_humidity = (int)Central_Recieved_Packet[17];
+USART_SendArray(Central_Recieved_Packet,128);
+OLED_ShowNum(2,1,data->ID,2);
+OLED_ShowNum(2,4,data->CO2_concentration,4);
+OLED_ShowNum(2,9,data->Light_time,2);
+OLED_ShowNum(4,1,data->Soil_temperature,2);
+OLED_ShowNum(4,4,data->Soil_humidity,2);
+OLED_ShowNum(4,7,data->Air_humidity,2);
+OLED_ShowNum(4,10,data->Air_temperature,2);
 
 memset(data->Record_Time, 0, sizeof(data->Record_Time));  
 snprintf(data->Record_Time, sizeof(data->Record_Time),
@@ -429,23 +446,20 @@ snprintf(data->Record_Time, sizeof(data->Record_Time),
          (int)Central_Recieved_Packet[9],
          (int)Central_Recieved_Packet[10]);
 
-									OLED_Clear();
-OLED_ShowHexNum(1,1,Central_Recieved_Packet[5],2);
+				/* OLED_Clear();
+				 OLED_ShowHexNum(1,1,Central_Recieved_Packet[5],2);
 				 OLED_ShowHexNum(1,4,Central_Recieved_Packet[6],2);
 				 OLED_ShowHexNum(1,7,Central_Recieved_Packet[7],2);
 				 OLED_ShowHexNum(2,1,Central_Recieved_Packet[8],2);
 				 OLED_ShowHexNum(2,4,Central_Recieved_Packet[9],2);
 				 OLED_ShowHexNum(2,7,Central_Recieved_Packet[10],2);
-OLED_ShowNum(4,1,CO2_Temp,4);
-OLED_ShowString(3,1,data->Record_Time);
-									
-									
-									
-OLED_ShowNum(4,1,sizeof(data->Record_Time),5);
-//while(1);
-	Send_Http(&data);
+			 	 OLED_ShowNum(4,1,CO2_Temp,4);
+				 OLED_ShowString(3,1,data->Record_Time);
+				 OLED_ShowNum(4,1,sizeof(data->Record_Time),5);*/
+					//while(1);
+	Send_Http(data);
 			free(data);
-				 while(1);
+				
 									
 		}
 	}

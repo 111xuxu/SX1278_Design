@@ -162,7 +162,7 @@ void USART2_IRQHandler(void)
 
 int Wait_or_Found(uint16_t timeout_ms, const char *target)
 {
-    char temp_buf[500] = {0};
+    char temp_buf[128] = {0};
 
     for (uint16_t elapsed = 0; elapsed < timeout_ms; elapsed += 5)
     {
@@ -237,7 +237,7 @@ int Connect_Server()
         return 0;
     }
 
-    OLED_ShowString(1,1,"Connecting...");
+   // OLED_ShowString(1,1,"Connecting...");
 
     Recieve_String[0] = '\0';
     WIFI_SendString(Check_AT);
@@ -366,7 +366,7 @@ int Send_Http(Data* data)
     int statu = Connect_Server();
     if (statu != 1) return 0;
 
-    char json[512];
+    char json[200];
 	
 	
    int json_len = snprintf(json, sizeof(json),
@@ -418,7 +418,7 @@ int Send_Http(Data* data)
     int result = Wait_or_Found(5000, "200 OK");
 
     if (result == 1) {
-        OLED_ShowString(1, 1, "HTTP 200 OK     ");
+        //OLED_ShowString(1, 1, "HTTP 200 OK     ");
           WIFI_SendString("+++");
     Delay_ms(80); 
     WIFI_SendString("+++");

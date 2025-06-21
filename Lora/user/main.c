@@ -7,9 +7,9 @@
 #include "diskio.h"
 
 extern uint16_t CO2[6];
-uint16_t CO2_Concentration=0;
-uint8_t temperature;
-uint8_t humi;
+int16_t CO2_Concentration=0;
+int16_t temperature=0;
+int16_t humi;
 extern uint16_t MyRTC_Time[];
 uint8_t test[];
 uint8_t SD_Recieve_buffer[512];
@@ -121,7 +121,7 @@ int main(void)
 
 	//Delay_ms(2000);
 
-	Data *data= (Data*)malloc(sizeof (Data));
+	/*Data *data= (Data*)malloc(sizeof (Data));
 	
 	data->CO2_concentration=120;
 	data->ID=15;
@@ -130,8 +130,8 @@ int main(void)
 	data->Soil_temperature=16;
 	data->Air_humidity=17;
 	data->Air_temperature=18;
-	snprintf(data->Record_Time,128, "2025-06-20 12:22:34");
-	Send_Http(data);
+	snprintf(data->Record_Time,sizeof(data->Record_Time), "2025-06-20 12:22:34");
+	Send_Http(data);*/
 	/*data->CO2_concentration=120;
 	data->ID=13;
 	data->Light_time=0;
@@ -140,8 +140,8 @@ int main(void)
 	data->Air_humidity=37;
 	data->Air_temperature=38;
 	snprintf(data->Record_Time, sizeof(data->Record_Time), "2025-06-20 12:22:34");
-	Send_Http(data);*/
-  free(data);
+	Send_Http(data);
+  free(data);*/
 	
 
 /*	uint16_t index=456;
