@@ -13,8 +13,8 @@ extern uint16_t MyRTC_Time[];
 extern char Buffer[128];
 uint8_t Cursor_position=1;
 uint8_t Cursor_choice=1;
-static int dry_value=2100;
-static int wet_value=900;
+static int dry_value=2000;
+static int wet_value=700;
 extern uint16_t CO2[6];
 int Time_Status=0;
 extern int16_t temperature;
@@ -269,9 +269,6 @@ Menu();
 			OLED_ShowNum(2,1,Send_times,3);
 			
 			
-			//soil_Humidity=AD_GetValue(ADC_Channel_0)/100;
-			
-			
 			soil_Humidity = (dry_value - AD_GetValue(ADC_Channel_0)) * 100 / (dry_value - wet_value);
 			if (soil_Humidity < 0) soil_Humidity = 0;
 			if (soil_Humidity > 100) soil_Humidity = 100;
@@ -327,7 +324,7 @@ Menu();
 						 
 						 }
 					 
-						 else if(Edge_Received_Response[3]==2){   //requireing update data
+						 else if(Edge_Received_Response[3]==2){   //requireing update time
 						 
 							 struct tm my_time;
 							my_time.tm_year = Edge_Received_Response[5]+100;
@@ -371,7 +368,7 @@ Menu();
 		
 		void Act_As_Central_Device(){
 		static uint16_t Rec_times;
-			static char File_Name[30];
+			static char File_Name[30]="Central.TXT";
 			static char Record_Time[30];
 			static char Central_Recieved_Packet[128];
 			 char Record_State[128];
@@ -413,28 +410,20 @@ Menu();
 			
 			Central_Device_Send_Data();
 			//sprintf(Record_Time,"20%02d-%02d-%02d--%02d:%02d:%02d",Central_Recieved_Packet[5],Central_Recieved_Packet[6],Central_Recieved_Packet[7],Central_Recieved_Packet[8],Central_Recieved_Packet[9],Central_Recieved_Packet[10]);
-			sprintf(File_Name, "Central.TXT");
+			//sprintf(File_Name, "Central.TXT");
 			memset(Record_State, 0, sizeof(Record_State));
 			sprintf(Record_State,"Record_Time:20%02d-%02d-%02d--%02d:%02d:%02d--ID:%02d--recieved:%d\r\n",Central_Recieved_Packet[5],Central_Recieved_Packet[6],Central_Recieved_Packet[7],Central_Recieved_Packet[8],Central_Recieved_Packet[9],Central_Recieved_Packet[10],Central_Recieved_Packet[4],1);
 				WriteFileToSD(File_Name,Record_State,Append_In_File);       // 写入文件	*/
 				
-uint16_t CO2_Temp=(int)Central_Recieved_Packet[11] << 8 | (int)Central_Recieved_Packet[12];
+		uint16_t CO2_Temp=(int)Central_Recieved_Packet[11] << 8 | (int)Central_Recieved_Packet[12];
 		Data *data = (Data*)calloc(1, sizeof(Data)); // 初始化为0
-data->ID = (int)Central_Recieved_Packet[4];
-data->CO2_concentration = (int)CO2_Temp;
-data->Light_time = (int)Central_Recieved_Packet[13];
-data->Soil_temperature = (int)Central_Recieved_Packet[14];
-data->Soil_humidity = (int)Central_Recieved_Packet[15];
-data->Air_temperature = (int)Central_Recieved_Packet[16];
-data->Air_humidity = (int)Central_Recieved_Packet[17];
-USART_SendArray(Central_Recieved_Packet,128);
-OLED_ShowNum(2,1,data->ID,2);
-OLED_ShowNum(2,4,data->CO2_concentration,4);
-OLED_ShowNum(2,9,data->Light_time,2);
-OLED_ShowNum(4,1,data->Soil_temperature,2);
-OLED_ShowNum(4,4,data->Soil_humidity,2);
-OLED_ShowNum(4,7,data->Air_humidity,2);
-OLED_ShowNum(4,10,data->Air_temperature,2);
+		data->ID = (int)Central_Recieved_Packet[4];
+		data->CO2_concentration = (int)CO2_Temp;
+		data->Light_time = (int)Central_Recieved_Packet[13];
+		data->Soil_temperature = (int)Central_Recieved_Packet[14];
+		data->Soil_humidity = (int)Central_Recieved_Packet[15];
+		data->Air_temperature = (int)Central_Recieved_Packet[16];
+		data->Air_humidity = (int)Central_Recieved_Packet[17];
 
 memset(data->Record_Time, 0, sizeof(data->Record_Time));  
 snprintf(data->Record_Time, sizeof(data->Record_Time),
@@ -489,6 +478,30 @@ switch (Show_Menu(Start_Choose_Role,sizeof(Start_Choose_Role) / sizeof(Start_Cho
 
 }
 	
+
+void Adjust_Soil_Humidity(void)
+{
+OLED_ShowString(1,1,"Clean Sensor ");
+	OLED_ShowString(2,1,"And Put In Air");
+	OLED_ShowString(3,1,"Press to Adjust");
+	while(Key_GetNum()==0);
+	
+dry_value=AD_GetValue(ADC_Channel_0);
+	OLED_Clear();
+	OLED_ShowString(1,1,"Succeed");
+	Delay_ms(500);
+	OLED_ShowString(1,1,"Clean Sensor ");
+	OLED_ShowString(2,1,"And Put In Water");
+	OLED_ShowString(3,1,"Press to Adjust");
+		while(Key_GetNum()==0);
+	OLED_Clear();
+wet_value=AD_GetValue(ADC_Channel_0);
+OLED_ShowString(1,1,"Succeed");
+	Delay_ms(500);
+
+
+}
+
 
 void Menu()	
 {
@@ -546,6 +559,9 @@ void Menu()
 			 Time_Status=1;
 		 else
 			 Time_Status=0;
+		Menu();
+		case 13:
+			Adjust_Soil_Humidity();
 		Menu();
 }
 

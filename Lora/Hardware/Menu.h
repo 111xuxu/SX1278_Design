@@ -15,7 +15,8 @@ const static char *menu[]={
 									"Sensor_Test",
 									"Send_Sensor_data",
 									"SD_Test",
-									"Get_Time"
+									"Get_Time",
+									"Adjust Soil_Humi"
 };
 
 const static char *Setting[]={

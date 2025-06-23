@@ -408,17 +408,17 @@ int Send_Http(Data* data)
         return 2;
     }
 
-     //清空接收缓冲（避免上次响应影响）
+ 
     Recieve_String[0] = '\0';
     data_ready_flag = 0;
 
     WIFI_SendString(http);
 
-     //等待 服务器返回 "200 OK"
+
     int result = Wait_or_Found(5000, "200 OK");
 
     if (result == 1) {
-        //OLED_ShowString(1, 1, "HTTP 200 OK     ");
+   
           WIFI_SendString("+++");
     Delay_ms(80); 
     WIFI_SendString("+++");
@@ -501,7 +501,7 @@ int Get_Time_Stamp()
     }
 
    
-    uint32_t cnt = (uint32_t)(ms / 1000ULL) - 7 * 3600; // 东八区偏移
+    uint32_t cnt = (uint32_t)(ms / 1000ULL) - 7 * 3600;
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
     PWR_BackupAccessCmd(ENABLE);
     RTC_EnterConfigMode();
