@@ -72,7 +72,7 @@ int main(void)
 	MYDMA_Init();
 	MySPI_Init();
 	SX1278_Init();
-	SX1278_Basic_Setting(128);
+	SX1278_Basic_Setting(30);
 	Light_Init();
 	Soil_Humidity_Init();
 	

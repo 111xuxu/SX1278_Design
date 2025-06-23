@@ -307,7 +307,7 @@ Menu();
 			if(Recieve_Data(1))
 			{
 				Rec_times++;
-				
+				OLED_ShowNum(4,1,Rec_times,3);
 				
 				SX1278_WriteReg(FIFO_Pointer,Recieve_Buffer_Start);
 			 for(int i=0;i<128;i++)
@@ -346,7 +346,7 @@ Menu();
 														
 				}
 				
-				OLED_ShowNum(4,1,Rec_times,3);
+				
 				
 			}
 			
@@ -367,10 +367,12 @@ Menu();
 		
 		
 		void Act_As_Central_Device(){
+			
+			
 		static uint16_t Rec_times;
 			static char File_Name[30]="Central.TXT";
 			static char Record_Time[30];
-			static char Central_Recieved_Packet[128];
+			static char Central_Recieved_Packet[30];
 			 char Record_State[128];
 			
 			
@@ -378,7 +380,7 @@ Menu();
 			
 		while(Recieve_Data(0)!=1);
 			
-			for(int i=0;i<128;i++)
+			for(int i=0;i<30;i++)
 				{
 						Central_Recieved_Packet[i]=SX1278_ReadReg(0x00);
 				}
@@ -555,8 +557,9 @@ void Menu()
 		case 12:
 			int temp=Get_Time_Stamp();
 		OLED_ShowNum(1,1,temp,1);
-		 if(temp)
+		 if(temp){
 			 Time_Status=1;
+		 MyRTC_SetTime();}
 		 else
 			 Time_Status=0;
 		Menu();

@@ -6,10 +6,10 @@
 #define StandByMode 0x81
 #define SendMode 0x83
 #define FIFO_Pointer 0x0D
-#define Send_BasePointer 0x0E
-#define Recieve_BasePointer 0x0F
-#define Send_Buffer_Start 0x80
-#define Recieve_Buffer_Start 0x00
+#define Send_BasePointer 0x0E //这是个指针	
+#define Recieve_BasePointer 0x0F//这是个指针
+#define Send_Buffer_Start 0x80//这是个地址
+#define Recieve_Buffer_Start 0x00//这是个地址
 #define Mode 0x01
 #define FIFO 0x00
 #define Continue_Recieve 0x85

@@ -871,7 +871,7 @@ I (.\library\stm32f10x_usart.h)(0x6828918A)
 I (.\library\stm32f10x_wwdg.h)(0x6828918A)
 I (.\library\misc.h)(0x6828918A)
 F (.\Hardware\serial.h)(0x6828918A)()
-F (.\Hardware\SX1278.c)(0x6856BBF1)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware -I .\disk --diag_suppress 223-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\sx1278.o --omf_browse .\objects\sx1278.crf --depend .\objects\sx1278.d)
+F (.\Hardware\SX1278.c)(0x68595C09)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware -I .\disk --diag_suppress 223-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\sx1278.o --omf_browse .\objects\sx1278.crf --depend .\objects\sx1278.d)
 I (.\start\stm32f10x.h)(0x6828918A)
 I (.\start\core_cm3.h)(0x6828918A)
 I (E:\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -901,13 +901,13 @@ I (.\library\stm32f10x_usart.h)(0x6828918A)
 I (.\library\stm32f10x_wwdg.h)(0x6828918A)
 I (.\library\misc.h)(0x6828918A)
 I (Hardware\My_spi.h)(0x6828918A)
-I (Hardware\SX1278_Reg_Define_Table.h)(0x6856BBDA)
+I (Hardware\SX1278_Reg_Define_Table.h)(0x6859565A)
 I (.\system\delay.h)(0x6828918A)
 I (E:\ARM\ARMCC\include\string.h)(0x588B8344)
 I (Hardware\OLED.h)(0x682CE789)
 I (Hardware\Key.h)(0x682CE300)
 I (Hardware\SX1278.h)(0x6856BBF1)
-F (.\Hardware\SX1278_Reg_Define_Table.h)(0x6856BBDA)()
+F (.\Hardware\SX1278_Reg_Define_Table.h)(0x6859565A)()
 F (.\Hardware\key.c)(0x682CE7E6)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware -I .\disk --diag_suppress 223-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
 I (.\start\stm32f10x.h)(0x6828918A)
 I (.\start\core_cm3.h)(0x6828918A)
@@ -1133,7 +1133,7 @@ I (.\library\stm32f10x_usart.h)(0x6828918A)
 I (.\library\stm32f10x_wwdg.h)(0x6828918A)
 I (.\library\misc.h)(0x6828918A)
 F (.\Hardware\My_DMA.h)(0x682CE3B1)()
-F (.\Hardware\Menu.c)(0x68594AE2)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware -I .\disk --diag_suppress 223-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\menu.o --omf_browse .\objects\menu.crf --depend .\objects\menu.d)
+F (.\Hardware\Menu.c)(0x68595C09)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware -I .\disk --diag_suppress 223-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\menu.o --omf_browse .\objects\menu.crf --depend .\objects\menu.d)
 I (.\start\stm32f10x.h)(0x6828918A)
 I (.\start\core_cm3.h)(0x6828918A)
 I (E:\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -1165,7 +1165,7 @@ I (.\library\misc.h)(0x6828918A)
 I (Hardware\Menu.h)(0x685947B2)
 I (.\system\delay.h)(0x6828918A)
 I (Hardware\OLED.h)(0x682CE789)
-I (Hardware\SX1278_Reg_Define_Table.h)(0x6856BBDA)
+I (Hardware\SX1278_Reg_Define_Table.h)(0x6859565A)
 I (.\Hardware\MyRTC.h)(0x6856BBDA)
 I (E:\ARM\ARMCC\include\time.h)(0x588B8344)
 I (Hardware\SD_Card.h)(0x6856BBF1)
@@ -1339,7 +1339,7 @@ I (.\library\stm32f10x_wwdg.h)(0x6828918A)
 I (.\library\misc.h)(0x6828918A)
 I (system\Delay.h)(0x6828918A)
 F (.\system\Delay.h)(0x6828918A)()
-F (.\user\main.c)(0x6856BBF2)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware -I .\disk --diag_suppress 223-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x685958E5)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\start -I .\user -I .\library -I .\system -I .\Hardware -I .\disk --diag_suppress 223-I.\RTE\_Target_1-IE:\ARM\PACK\Keil\STM32F1xx_DFP\Keil.STM32F1xx_DFP.2.4.1\Device\Include-IE:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\start\stm32f10x.h)(0x6828918A)
 I (.\start\core_cm3.h)(0x6828918A)
 I (E:\ARM\ARMCC\include\stdint.h)(0x588B8344)
