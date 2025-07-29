@@ -14,6 +14,8 @@ extern char Buffer[128];
 uint8_t Cursor_position=1;
 uint8_t Cursor_choice=1;
 static int dry_value=2000;
+
+//test
 static int wet_value=700;
 extern uint16_t CO2[6];
 int Time_Status=0;
